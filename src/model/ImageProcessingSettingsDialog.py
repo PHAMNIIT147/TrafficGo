@@ -2,9 +2,9 @@ from PyQt5.QtWidgets import QMessageBox, QDialog
 from PyQt5.QtCore import QRegExp, pyqtSignal
 from PyQt5.QtGui import QRegExpValidator, QDoubleValidator
 
-from ui_windows.ui_ImageProcessingSettingsDialog import Ui_ImageProcessingSettingsDialog
-from Structures import *
-from Config import *
+from src.ui.ui_ImageProcessingSettingsDialog import Ui_ImageProcessingSettingsDialog
+from src.config.Structures import *
+from src.config.Config import *
 
 
 class ImageProcessingSettingsDialog(QDialog, Ui_ImageProcessingSettingsDialog):

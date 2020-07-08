@@ -1,19 +1,18 @@
-from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QMessageBox, QDialog, QTabWidget, QAbstractButton
-from PyQt5.QtCore import Qt, QSize
 from PyQt5.uic import loadUi
-
-from ui_windows.ui_MainWindow import Ui_MainWindow
-from SharedImageBuffer import SharedImageBuffer
-from CameraConnectDialog import CameraConnectDialog
-from CameraView import CameraView
-from Buffer import *
-from Config import *
+from PyQt5.QtCore import Qt, QSize
+from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QMessageBox, QDialog, QTabWidget, QAbstractButton
+from src.ui.ui_MainWindow import Ui_MainWindow
+from src.config.SharedImageBuffer import SharedImageBuffer
+from src.view.CameraConnectDialog import CameraConnectDialog
+from src.view.CameraView import CameraView
+from src.config.Buffer import *
+from src.config.Config import *
+import sys
 
 
 class MainWindow(QMainWindow, Ui_MainWindow):
-    def __init__(self, parent=None, ui=None):
+    def __init__(self, parent=None):
         super(MainWindow, self).__init__(parent)
-        loadUi("./ui/MainWindow.ui", self)
 
         # Setup UI
         self.setupUi(self)
@@ -55,7 +54,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                 "Please close all currently open streams "
                                 "before attempting to open a new stream.",
                                 QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
-        # Attempt to connect to camera
+        # Attempt to connect to cam
         else:
             # Get next tab index
             nextTabIndex = 0 if len(

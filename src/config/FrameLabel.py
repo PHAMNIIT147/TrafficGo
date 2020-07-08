@@ -2,7 +2,7 @@ from PyQt5.QtWidgets import QLabel, QMenu, QAction
 from PyQt5.QtCore import QPoint, pyqtSignal, Qt
 from PyQt5.QtGui import QPainter
 
-from Structures import *
+from src.config.Structures import *
 
 
 class FrameLabel(QLabel):
@@ -31,8 +31,10 @@ class FrameLabel(QLabel):
         self.setMouseCursorPos(ev.pos())  # QPoint
         # Update box width and height if box drawing is in progress
         if self.drawBox:
-            self.box.setWidth(self.getMouseCursorPos().x() - self.startPoint.x())
-            self.box.setHeight(self.getMouseCursorPos().y() - self.startPoint.y())
+            self.box.setWidth(
+                self.getMouseCursorPos().x() - self.startPoint.x())
+            self.box.setHeight(
+                self.getMouseCursorPos().y() - self.startPoint.y())
         # Inform main window of mouse move event
         self.onMouseMoveEvent.emit()
 

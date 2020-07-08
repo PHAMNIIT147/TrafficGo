@@ -1,10 +1,11 @@
+
+
+from src.ui.ui_CameraConnectDialog import Ui_CameraConnectDialog
+from src.config.Config import *
 from PyQt5.QtWidgets import QDialog, QMessageBox, QFileDialog
 from PyQt5.QtCore import QRegExp, qDebug, QThread
 from PyQt5.QtGui import QRegExpValidator
 import cv2
-
-from ui_windows.ui_CameraConnectDialog import Ui_CameraConnectDialog
-from Config import *
 
 
 class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
@@ -30,6 +31,7 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
                               # 'CAP_V4L2': cv2.CAP_V4L2,
                               # 'CAP_FIREWIRE': cv2.CAP_FIREWIRE,
                               # 'CAP_FIREWARE': cv2.CAP_FIREWARE,
+
                               # 'CAP_IEEE1394': cv2.CAP_IEEE1394,
                               # 'CAP_DC1394': cv2.CAP_DC1394,
                               # 'CAP_CMU1394': cv2.CAP_CMU1394,
@@ -58,9 +60,11 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
                               # 'CAP_XINE': cv2.CAP_XINE
                               }
         self.apiPreferenceComboBox.addItems(self.apiPreference.keys())
+
         # Setup capture prio combo boxes
         threadPriorities = ["Idle", "Lowest", "Low", "Normal",
                             "High", "Highest", "Time Critical", "Inherit"]
+
         self.capturePrioComboBox.addItems(threadPriorities)
         self.processingPrioComboBox.addItems(threadPriorities)
         # Set dialog to defaults
@@ -74,35 +78,10 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
             lambda: self.setUrlMode('device url'))
         self.filenameRadioButton.clicked.connect(
             lambda: self.setUrlMode('filename'))
-        self.rtspRadioButton.clicked.connect(lambda: self.setUrlMode('rtsp'))
         self.importFilePushButton.clicked.connect(self.openFile)
 
     def getDeviceUrl(self):
-        # Set device number to default (any available camera) if field is blank
-        if self.rtspRadioButton.isChecked():
-            if (self.usernameEdit.text().strip() == ''
-                    and self.passwordEdit.text().strip() == ''
-                    and self.ipEdit.text().strip() == ''
-                    and self.portEdit.text().strip() == ''
-                    and self.channelsEdit.text().strip() == ''):
-                ret = QMessageBox.question(self, "DEVICE_URL",
-                                           DEFAULT_DEVICE_URL,
-                                           QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
-                if ret:
-                    qDebug('DEVICE_URL: %s' % DEFAULT_DEVICE_URL)
-                    return DEFAULT_DEVICE_URL
-                else:
-                    QMessageBox.warning(self.parentWidget(),
-                                        "WARNING:",
-                                        "Device Url field blank.\n"
-                                        "Automatically set to 0.")
-                    return '0'
-            else:
-                return 'rtsp://%s:%s@%s:%s/Streaming/Channels/%s' \
-                       % (self.usernameEdit.text(), self.passwordEdit.text(), self.ipEdit.text(), self.portEdit.text(),
-                          self.channelsEdit.text())
-
-        elif self.filenameRadioButton.isChecked():
+        if self.filenameRadioButton.isChecked():
             if self.filenameEdit.text().strip() == '':
                 if DEFAULT_FILENAME.strip() == '':
                     QMessageBox.warning(self.parentWidget(),
@@ -200,16 +179,6 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
             self.channelsEdit.setEnabled(False)
             self.importFilePushButton.setEnabled(True)
             self.filenameRadioButton.setChecked(True)
-        elif mode == 'rtsp':
-            self.deviceUrlEdit.setEnabled(False)
-            self.filenameEdit.setEnabled(False)
-            self.usernameEdit.setEnabled(True)
-            self.passwordEdit.setEnabled(True)
-            self.ipEdit.setEnabled(True)
-            self.portEdit.setEnabled(True)
-            self.channelsEdit.setEnabled(True)
-            self.importFilePushButton.setEnabled(False)
-            self.rtspRadioButton.setChecked(True)
 
     def openFile(self):
         filename = QFileDialog.getOpenFileName(
@@ -217,24 +186,21 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
         self.filenameEdit.setText(filename)
 
     def resetToDefaults(self):
-        # Default camera
-        self.filenameEdit.clear()
-        self.deviceUrlEdit.clear()
-        self.usernameEdit.setText(DEFAULT_RTSP_USER)
-        self.passwordEdit.setText(DEFAULT_RTSP_PASSWORD)
-        self.ipEdit.setText(DEFAULT_RTSP_IP)
-        self.portEdit.setText(DEFAULT_RTSP_PORT)
-        self.channelsEdit.setText(DEFAULT_RTSP_CAHHELS)
-        self.setUrlMode(DEFAULT_URL_MODE)
+        qDebug("Reset default settings!")
+
         # Resolution
         self.resWEdit.clear()
         self.resHEdit.clear()
+
         # Image buffer size
         self.imageBufferSizeEdit.setText(str(DEFAULT_IMAGE_BUFFER_SIZE))
+
         # Drop frames
         self.dropFrameCheckBox.setChecked(DEFAULT_DROP_FRAMES)
+
         # apiPreference
         self.apiPreferenceComboBox.setCurrentText(DEFAULT_APIPREFERENCE)
+
         # Capture thread
         if DEFAULT_CAP_THREAD_PRIO == QThread.IdlePriority:
             self.capturePrioComboBox.setCurrentIndex(0)

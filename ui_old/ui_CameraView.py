@@ -6,25 +6,31 @@
 #
 # WARNING! All changes made in this file will be lost!
 
+from FrameLabel import FrameLabel
 from PyQt5 import QtCore, QtGui, QtWidgets
+
 
 class Ui_CameraView(object):
     def setupUi(self, CameraView):
         CameraView.setObjectName("CameraView")
         CameraView.resize(762, 597)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Minimum)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(CameraView.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            CameraView.sizePolicy().hasHeightForWidth())
         CameraView.setSizePolicy(sizePolicy)
         self.verticalLayout = QtWidgets.QVBoxLayout(CameraView)
         self.verticalLayout.setObjectName("verticalLayout")
         self.frameLabel = FrameLabel(CameraView)
         self.frameLabel.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.frameLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.frameLabel.sizePolicy().hasHeightForWidth())
         self.frameLabel.setSizePolicy(sizePolicy)
         self.frameLabel.setMouseTracking(True)
         self.frameLabel.setAutoFillBackground(True)
@@ -40,38 +46,46 @@ class Ui_CameraView(object):
         self.gridLayout = QtWidgets.QGridLayout()
         self.gridLayout.setObjectName("gridLayout")
         self.label_4 = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_4.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_4.sizePolicy().hasHeightForWidth())
         self.label_4.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setBold(True)
         font.setWeight(75)
         self.label_4.setFont(font)
-        self.label_4.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_4.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_4.setObjectName("label_4")
         self.gridLayout.addWidget(self.label_4, 1, 0, 1, 1)
         self.label_5 = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_5.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_5.sizePolicy().hasHeightForWidth())
         self.label_5.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setBold(True)
         font.setWeight(75)
         self.label_5.setFont(font)
-        self.label_5.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_5.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_5.setObjectName("label_5")
         self.gridLayout.addWidget(self.label_5, 2, 0, 1, 1)
         self.imageBufferBar = QtWidgets.QProgressBar(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.imageBufferBar.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.imageBufferBar.sizePolicy().hasHeightForWidth())
         self.imageBufferBar.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -80,10 +94,12 @@ class Ui_CameraView(object):
         self.imageBufferBar.setObjectName("imageBufferBar")
         self.gridLayout.addWidget(self.imageBufferBar, 7, 1, 1, 1)
         self.roiLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.roiLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.roiLabel.sizePolicy().hasHeightForWidth())
         self.roiLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -92,10 +108,12 @@ class Ui_CameraView(object):
         self.roiLabel.setObjectName("roiLabel")
         self.gridLayout.addWidget(self.roiLabel, 5, 1, 1, 1)
         self.imageBufferLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.imageBufferLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.imageBufferLabel.sizePolicy().hasHeightForWidth())
         self.imageBufferLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -105,10 +123,12 @@ class Ui_CameraView(object):
         self.imageBufferLabel.setObjectName("imageBufferLabel")
         self.gridLayout.addWidget(self.imageBufferLabel, 7, 2, 1, 1)
         self.label_7 = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_7.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_7.sizePolicy().hasHeightForWidth())
         self.label_7.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -118,10 +138,12 @@ class Ui_CameraView(object):
         self.label_7.setObjectName("label_7")
         self.gridLayout.addWidget(self.label_7, 6, 0, 1, 1)
         self.nFramesProcessedLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.nFramesProcessedLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.nFramesProcessedLabel.sizePolicy().hasHeightForWidth())
         self.nFramesProcessedLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -132,10 +154,12 @@ class Ui_CameraView(object):
         self.gridLayout.addWidget(self.nFramesProcessedLabel, 4, 2, 1, 1)
         self.captureRateLabel = QtWidgets.QLabel(CameraView)
         self.captureRateLabel.setEnabled(True)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.captureRateLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.captureRateLabel.sizePolicy().hasHeightForWidth())
         self.captureRateLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -144,10 +168,12 @@ class Ui_CameraView(object):
         self.captureRateLabel.setObjectName("captureRateLabel")
         self.gridLayout.addWidget(self.captureRateLabel, 3, 1, 1, 1)
         self.label_6 = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_6.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_6.sizePolicy().hasHeightForWidth())
         self.label_6.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -157,24 +183,29 @@ class Ui_CameraView(object):
         self.label_6.setObjectName("label_6")
         self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
         self.label_1 = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_1.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_1.sizePolicy().hasHeightForWidth())
         self.label_1.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setBold(True)
         font.setWeight(75)
         self.label_1.setFont(font)
-        self.label_1.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_1.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_1.setObjectName("label_1")
         self.gridLayout.addWidget(self.label_1, 7, 0, 1, 1)
         self.nFramesCapturedLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.nFramesCapturedLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.nFramesCapturedLabel.sizePolicy().hasHeightForWidth())
         self.nFramesCapturedLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -184,10 +215,12 @@ class Ui_CameraView(object):
         self.nFramesCapturedLabel.setObjectName("nFramesCapturedLabel")
         self.gridLayout.addWidget(self.nFramesCapturedLabel, 3, 2, 1, 1)
         self.label_3 = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_3.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_3.sizePolicy().hasHeightForWidth())
         self.label_3.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -197,36 +230,44 @@ class Ui_CameraView(object):
         self.label_3.setObjectName("label_3")
         self.gridLayout.addWidget(self.label_3, 4, 0, 1, 1)
         self.label_2 = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.label_2.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.label_2.sizePolicy().hasHeightForWidth())
         self.label_2.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
         font.setBold(True)
         font.setWeight(75)
         self.label_2.setFont(font)
-        self.label_2.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.label_2.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.label_2.setObjectName("label_2")
         self.gridLayout.addWidget(self.label_2, 3, 0, 1, 1)
         self.cameraResolutionLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.cameraResolutionLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.cameraResolutionLabel.sizePolicy().hasHeightForWidth())
         self.cameraResolutionLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
         self.cameraResolutionLabel.setFont(font)
-        self.cameraResolutionLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.cameraResolutionLabel.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.cameraResolutionLabel.setObjectName("cameraResolutionLabel")
         self.gridLayout.addWidget(self.cameraResolutionLabel, 2, 1, 1, 1)
         self.mouseCursorPosLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.mouseCursorPosLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.mouseCursorPosLabel.sizePolicy().hasHeightForWidth())
         self.mouseCursorPosLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -235,22 +276,27 @@ class Ui_CameraView(object):
         self.mouseCursorPosLabel.setObjectName("mouseCursorPosLabel")
         self.gridLayout.addWidget(self.mouseCursorPosLabel, 6, 1, 1, 1)
         self.deviceUrlLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.deviceUrlLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.deviceUrlLabel.sizePolicy().hasHeightForWidth())
         self.deviceUrlLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
         self.deviceUrlLabel.setFont(font)
-        self.deviceUrlLabel.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
+        self.deviceUrlLabel.setAlignment(
+            QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter)
         self.deviceUrlLabel.setObjectName("deviceUrlLabel")
         self.gridLayout.addWidget(self.deviceUrlLabel, 1, 1, 1, 1)
         self.processingRateLabel = QtWidgets.QLabel(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.processingRateLabel.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.processingRateLabel.sizePolicy().hasHeightForWidth())
         self.processingRateLabel.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -259,10 +305,12 @@ class Ui_CameraView(object):
         self.processingRateLabel.setObjectName("processingRateLabel")
         self.gridLayout.addWidget(self.processingRateLabel, 4, 1, 1, 1)
         self.clearImageBufferButton = QtWidgets.QPushButton(CameraView)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.clearImageBufferButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.clearImageBufferButton.sizePolicy().hasHeightForWidth())
         self.clearImageBufferButton.setSizePolicy(sizePolicy)
         font = QtGui.QFont()
         font.setPointSize(8)
@@ -271,28 +319,34 @@ class Ui_CameraView(object):
         self.gridLayout.addWidget(self.clearImageBufferButton, 7, 3, 1, 1)
         self.startButton = QtWidgets.QPushButton(CameraView)
         self.startButton.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.startButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.startButton.sizePolicy().hasHeightForWidth())
         self.startButton.setSizePolicy(sizePolicy)
         self.startButton.setObjectName("startButton")
         self.gridLayout.addWidget(self.startButton, 3, 3, 1, 1)
         self.pauseButton = QtWidgets.QPushButton(CameraView)
         self.pauseButton.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.pauseButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.pauseButton.sizePolicy().hasHeightForWidth())
         self.pauseButton.setSizePolicy(sizePolicy)
         self.pauseButton.setObjectName("pauseButton")
         self.gridLayout.addWidget(self.pauseButton, 4, 3, 1, 1)
         self.reconnectButton = QtWidgets.QPushButton(CameraView)
         self.reconnectButton.setEnabled(False)
-        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
+        sizePolicy = QtWidgets.QSizePolicy(
+            QtWidgets.QSizePolicy.MinimumExpanding, QtWidgets.QSizePolicy.MinimumExpanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
-        sizePolicy.setHeightForWidth(self.reconnectButton.sizePolicy().hasHeightForWidth())
+        sizePolicy.setHeightForWidth(
+            self.reconnectButton.sizePolicy().hasHeightForWidth())
         self.reconnectButton.setSizePolicy(sizePolicy)
         self.reconnectButton.setObjectName("reconnectButton")
         self.gridLayout.addWidget(self.reconnectButton, 1, 3, 1, 1)
@@ -316,9 +370,8 @@ class Ui_CameraView(object):
         self.label_1.setText(_translate("CameraView", "Image Buffer:"))
         self.label_3.setText(_translate("CameraView", "Processing Rate:"))
         self.label_2.setText(_translate("CameraView", "Capture Rate:"))
-        self.clearImageBufferButton.setText(_translate("CameraView", "Clear Image Buffer"))
+        self.clearImageBufferButton.setText(
+            _translate("CameraView", "Clear Image Buffer"))
         self.startButton.setText(_translate("CameraView", "Start"))
         self.pauseButton.setText(_translate("CameraView", "Pause"))
         self.reconnectButton.setText(_translate("CameraView", "Reconnect"))
-
-from FrameLabel import FrameLabel

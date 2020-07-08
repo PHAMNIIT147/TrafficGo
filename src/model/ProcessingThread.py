@@ -3,9 +3,9 @@ from PyQt5.QtGui import QImage
 from queue import Queue
 import cv2
 
-from MatToQImage import matToQImage
-from Structures import *
-from Config import *
+from src.config.MatToQImage import matToQImage
+from src.config.Structures import *
+from src.config.Config import *
 
 
 class ProcessingThread(QThread):

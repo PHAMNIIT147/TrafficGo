@@ -1,12 +1,11 @@
 from PyQt5.QtWidgets import QWidget, QMessageBox, QDialog
 from PyQt5.QtCore import qDebug, QRect, pyqtSignal, Qt
 from PyQt5.QtGui import QPixmap
-
-from ui_windows.ui_CameraView import Ui_CameraView
-from CaptureThread import CaptureThread
-from ImageProcessingSettingsDialog import ImageProcessingSettingsDialog
-from ProcessingThread import ProcessingThread
-from Structures import *
+from src.ui.ui_CameraView import Ui_CameraView
+from src.core.CaptureThread import CaptureThread
+from src.model.ImageProcessingSettingsDialog import ImageProcessingSettingsDialog
+from src.model.ProcessingThread import ProcessingThread
+from src.config.Structures import *
 
 
 class CameraView(QWidget, Ui_CameraView):
@@ -15,6 +14,7 @@ class CameraView(QWidget, Ui_CameraView):
 
     def __init__(self, parent, deviceUrl, sharedImageBuffer, cameraId):
         super(CameraView, self).__init__(parent)
+
         self.sharedImageBuffer = sharedImageBuffer
         self.cameraId = cameraId
         # Create image processing settings dialog

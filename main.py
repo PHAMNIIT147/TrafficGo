@@ -1,9 +1,7 @@
-import sys
-
 from PyQt5.QtWidgets import QApplication
 import qdarkstyle
-
-from MainWindow import MainWindow
+import sys
+from src.MainWindow import MainWindow
 
 
 def main():
