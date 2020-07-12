@@ -1,6 +1,14 @@
-from PyQt5.uic import loadUi
-from PyQt5.QtCore import Qt, QSize
-from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QMessageBox, QDialog, QTabWidget, QAbstractButton
+'''
+ # @ Author: Pham Thanh Phong
+ # @ Create Time: 2020-07-06 23:05:57
+ # @ Modified by: VAA AI
+ # @ Modified time: 2020-07-08 15:27:25
+ # @ Description:
+ '''
+import qdarkstyle
+from PyQt5.QtCore import Qt, QSize, qDebug
+from PyQt5.QtGui import QKeySequence
+from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QMessageBox, QDialog, QTabWidget, QAbstractButton, qApp
 from src.ui.ui_MainWindow import Ui_MainWindow
 from src.config.SharedImageBuffer import SharedImageBuffer
 from src.view.CameraConnectDialog import CameraConnectDialog
@@ -9,6 +17,7 @@ from src.config.Buffer import *
 from src.config.Config import *
 import sys
 
+APP_VERSION = "1.0.0"
 
 class MainWindow(QMainWindow, Ui_MainWindow):
     def __init__(self, parent=None):
@@ -38,6 +47,10 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionAbout.triggered.connect(self.showAboutDialog)
         self.actionQuit.triggered.connect(self.close)
         self.actionFullScreen.toggled.connect(self.setFullScreen)
+        ## settings -> theme -> option_theme
+        ## return: default theme app is white
+        self.actionDark.triggered.connect(lambda: qApp.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5()))
+        self.actionWhite.triggered.connect(lambda: qApp.setStyleSheet(qdarkstyle.load_stylesheet()))
         # Create SharedImageBuffer object
         self.sharedImageBuffer = SharedImageBuffer()
         # Camera number
@@ -113,7 +126,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                             self.tabWidget.removeTab(0)
                         # Add tab
                         self.tabWidget.addTab(
-                            cameraView, '%s [%s]' % (tabLabel, deviceUrl))
+                            cameraView, 'Live %s [%s]' % (tabLabel, deviceUrl))
                         self.tabWidget.setCurrentWidget(cameraView)
                         # Set tooltips
                         self.setTabCloseToolTips(
@@ -224,3 +237,5 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for item in tabs.findChildren(QAbstractButton):
             if item.inherits("CloseButton"):
                 item.setToolTip(tooltip)
+
+

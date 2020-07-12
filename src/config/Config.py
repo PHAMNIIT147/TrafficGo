@@ -1,3 +1,12 @@
+'''
+ # @ Author: Pham Thanh Phong
+ # @ Create Time: 2020-07-06 23:05:57
+ # @ Modified by: VAA Ai-Go!
+ # @ Modified time: 2020-07-11 16:12:00
+ # @ Description:
+ '''
+
+
 from PyQt5.QtCore import QThread
 
 # Version information
@@ -20,15 +29,14 @@ DEFAULT_RTSP_CAHHELS = '' """
 DEFAULT_TRANSPORT_MODE = 0  # 0 -> none, 1 -> unicast, 2 -> multicast
 
 # FPS statistics queue lengths
-PROCESSING_FPS_STAT_QUEUE_LENGTH = 32
-CAPTURE_FPS_STAT_QUEUE_LENGTH = 32
-
+PROCESSING_FPS_STAT_QUEUE_LENGTH = 60
+CAPTURE_FPS_STAT_QUEUE_LENGTH = 60
 # Image buffer size
 DEFAULT_IMAGE_BUFFER_SIZE = 2
 # Drop frame if image/frame buffer is full
 DEFAULT_DROP_FRAMES = True
 # ApiPreference for OpenCv.VideoCapture
-DEFAULT_APIPREFERENCE = 'CAP_ANY'
+DEFAULT_APIPREFERENCE = 'CAPATURE_ANYTHING_DEVICES'
 # Thread priorities
 DEFAULT_CAP_THREAD_PRIO = QThread.NormalPriority
 DEFAULT_PROC_THREAD_PRIO = QThread.HighestPriority
@@ -52,3 +60,7 @@ DEFAULT_CANNY_THRESHOLD_1 = 10
 DEFAULT_CANNY_THRESHOLD_2 = 00
 DEFAULT_CANNY_APERTURE_SIZE = 3
 DEFAULT_CANNY_L2GRADIENT = False
+
+#Yolov3
+NAMES_VEHICLE = ["bicycle", "bus", "car", "motorbike","truck"]
+COLOR_DIRECTORY = {"bicycle": (217, 32, 39),"bus" :(255, 146, 52),"car":(255, 205, 60),"motorbike":(53, 208, 186),"truck":(250, 38, 160)}

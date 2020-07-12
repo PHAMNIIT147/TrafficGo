@@ -169,16 +169,6 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
             self.channelsEdit.setEnabled(False)
             self.importFilePushButton.setEnabled(False)
             self.deviceUrlRadioButton.setChecked(True)
-        elif mode == 'filename':
-            self.deviceUrlEdit.setEnabled(False)
-            self.filenameEdit.setEnabled(True)
-            self.usernameEdit.setEnabled(False)
-            self.passwordEdit.setEnabled(False)
-            self.ipEdit.setEnabled(False)
-            self.portEdit.setEnabled(False)
-            self.channelsEdit.setEnabled(False)
-            self.importFilePushButton.setEnabled(True)
-            self.filenameRadioButton.setChecked(True)
 
     def openFile(self):
         filename = QFileDialog.getOpenFileName(

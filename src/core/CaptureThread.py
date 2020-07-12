@@ -1,3 +1,11 @@
+'''
+ # @ Author: Pham Thanh Phong
+ # @ Create Time: 2020-07-06 23:05:57
+ # @ Modified by: VAA AI
+ # @ Modified time: 2020-07-08 14:45:11
+ # @ Description:
+ '''
+
 from PyQt5.QtCore import QThread, QTime, QMutexLocker, QMutex, pyqtSignal, qDebug
 from PyQt5.QtWidgets import QMessageBox
 import cv2
@@ -7,15 +15,14 @@ import os
 from src.config.Structures import *
 from src.config.Config import *
 
-
 class CaptureThread(QThread):
     updateStatisticsInGUI = pyqtSignal(ThreadStatisticsData)
     end = pyqtSignal()
 
     def __init__(self, sharedImageBuffer, deviceUrl, dropFrameIfBufferFull, apiPreference, width, height, parent=None):
-        super(CapturetureThread, self).__init__(parent)
+        super(CaptureThread, self).__init__(parent)
         # initialize capture video
-        self.capture = cv2.VideoCaptureture()
+        self.capture = cv2.VideoCapture()
         self.time = QTime()
         self.doStopMutex = QMutex()
         self.fps = Queue()
@@ -48,23 +55,25 @@ class CaptureThread(QThread):
                 self.doStopMutex.unlock()
                 break
             self.doStopMutex.unlock()
-            ################################
-            ################################
 
-            # Synchronize with other streams (if enabled for this stream)
+            ################################
+            # Synchronize with other streams
+            # (if enabled for this stream)
+            ################################
             self.sharedImageBuffer.sync(self.deviceUrl)
 
-            # Captureture frame ( if available)
+            """ # Capture frame ( if available)
             if not self.capture.grab():
                 if pause or not self.localVideo:
                     continue
                 # Video End
                 pause = True
                 self.end.emit()
-                continue
+                continue """
 
-            # Retrieve frame
-            _, self.grabbedFrame = self.capture.retrieve()
+            # Read frame
+            ret, self.grabbedFrame = self.capture.read()
+            
             # Add frame to buffer
             self.sharedImageBuffer.getByDeviceUrl(self.deviceUrl).add(
                 self.grabbedFrame, self.dropFrameIfBufferFull)
@@ -74,12 +83,12 @@ class CaptureThread(QThread):
             self.updateStatisticsInGUI.emit(self.statsData)
 
             # Limit fps
-            delta = self.defaultTime - self.t.elapsed()
-            # delta = self.defaultTime - self.capturetureTime
+            delta = self.defaultTime - self.time.elapsed()
+
             if delta > 0:
                 self.msleep(delta)
             # Save captureture time
-            self.capturetureTime = self.t.elapsed()
+            self.capturetureTime = self.time.elapsed()
 
             # Update statistics
             self.updateFPS(self.capturetureTime)
@@ -87,33 +96,36 @@ class CaptureThread(QThread):
             # Start timer (used to calculate captureture rate)
             self.time.start()
 
-        qDebug("Stopping captureture thread...")
+        qDebug("Run -> Stopping captureture thread...")
 
     def stop(self):
         with QMutexLocker(self.doStopMutex):
             self.doStop = True
 
     def connectToCamera(self):
+        qDebug("Connet to your camera!")
         # Open camera
         camOpenResult = self.capture.open(self._deviceUrl, self.apiPreference)
         # Set resolution
         if self.width != -1:
-            self.capture.set(cv2.CAPture_PROP_FRAME_WIDTH, self.width)
+            self.capture.set(cv2.CAP_PROP_FRAME_WIDTH, self.width)
         if self.height != -1:
-            self.capture.set(cv2.CAPture_PROP_FRAME_HEIGHT, self.height)
+            self.capture.set(cv2.CAP_PROP_FRAME_HEIGHT, self.height)
 
         if camOpenResult:
             try:
                 self.defaultTime = int(
-                    1000 / self.capture.get(cv2.CAPture_PROP_FPS))
+                    1000 / self.capture.get(cv2.CAP_PROP_FPS))
             except:
                 self.defaultTime = 40
         # Return result
         return camOpenResult
 
     def disconnectCamera(self):
+        qDebug("Disconnect to your camera")
         # Camera is connected
         if self.capture.isOpened():
+            qDebug("Camera is open!")
             # Disconnect camera
             self.capture.release()
             return True
@@ -122,31 +134,38 @@ class CaptureThread(QThread):
             return False
 
     def isCameraConnected(self):
+        qDebug("Camera is open!")
         return self.capture.isOpened()
 
     def getInputSourceWidth(self):
-        return self.capture.get(cv2.CAPture_PROP_FRAME_WIDTH)
+        width = int(self.capture.get(cv2.CAP_PROP_FRAME_WIDTH))
+        print("width is: %d", width)
+        return width
 
     def getInputSourceHeight(self):
-        return self.capture.get(cv2.CAPture_PROP_FRAME_HEIGHT)
+        height = int(self.capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
+        print("Height is: %d", height)
+        return height
 
     def updateFPS(self, timeElapsed):
+        print("time elapsed is: %d", timeElapsed)
         # Add instantaneous FPS value to queue
         if timeElapsed > 0:
             self.fps.put(1000 / timeElapsed)
             # Increment sample Number
             self.sampleNumber += 1
 
-        # Maximum size of queue is DEFAULT_CAPtureTURE_FPS_STAT_QUEUE_LENGTH
-        if self.fps.qsize() > CAPtureTURE_FPS_STAT_QUEUE_LENGTH:
+        # Maximum size of queue is DEFAULT_CAPTURE_FPS_STAT_QUEUE_LENGTH
+        if self.fps.qsize() > CAPTURE_FPS_STAT_QUEUE_LENGTH:
             self.fps.get()
-        # Update FPS value every DEFAULT_CAPtureTURE_FPS_STAT_QUEUE_LENGTH samples
-        if self.fps.qsize() == CAPtureTURE_FPS_STAT_QUEUE_LENGTH and self.sampleNumber == CAPtureTURE_FPS_STAT_QUEUE_LENGTH:
+        # Update FPS value every DEFAULT_CAPTURE_FPS_STAT_QUEUE_LENGTH samples
+        if (self.fps.qsize() == CAPTURE_FPS_STAT_QUEUE_LENGTH) and (self.sampleNumber == CAPTURE_FPS_STAT_QUEUE_LENGTH):
             # Empty queue and store sum
             while not self.fps.empty():
                 self.fpsSum += self.fps.get()
             # Calculate average FPS
-            self.statsData.averageFPS = self.fpsSum / CAPtureTURE_FPS_STAT_QUEUE_LENGTH
+            self.statsData.averageFPS = self.fpsSum / CAPTURE_FPS_STAT_QUEUE_LENGTH
+            print("Average FPS is: %d", self.statsData.averageFPS)
             # Reset sum
             self.fpsSum = 0.0
             # Reset sample Number

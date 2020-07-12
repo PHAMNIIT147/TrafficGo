@@ -1,4 +1,4 @@
-from PyQt5.QtCore import QMutexLocker, QMutex, QWaitCondition
+from PyQt5.QtCore import QMutexLocker, QMutex, QWaitCondition, qDebug
 
 
 class SharedImageBuffer(object):
@@ -12,6 +12,7 @@ class SharedImageBuffer(object):
         self.mutex = QMutex()
 
     def add(self, deviceUrl, imageBuffer, sync=False):
+        print("Devices url:" + deviceUrl + ", Image buffer: ", imageBuffer)
         # Device stream is to be synchronized
         if sync:
             with QMutexLocker(self.mutex):
@@ -20,6 +21,7 @@ class SharedImageBuffer(object):
         self.imageBufferDict[deviceUrl] = imageBuffer
 
     def getByDeviceUrl(self, deviceUrl):
+        print("Devices url: " + deviceUrl)
         return self.imageBufferDict[deviceUrl]
 
     def removeByDeviceUrl(self, deviceUrl):

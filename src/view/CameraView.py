@@ -15,6 +15,10 @@ class CameraView(QWidget, Ui_CameraView):
     def __init__(self, parent, deviceUrl, sharedImageBuffer, cameraId):
         super(CameraView, self).__init__(parent)
 
+        self.counter_area = []
+        self.get_points_flag = 0
+        
+
         self.sharedImageBuffer = sharedImageBuffer
         self.cameraId = cameraId
         # Create image processing settings dialog
@@ -43,6 +47,9 @@ class CameraView(QWidget, Ui_CameraView):
         self.clearImageBufferButton.released.connect(self.clearImageBuffer)
         self.frameLabel.onMouseMoveEvent.connect(
             self.updateMouseCursorPosLabel)
+        # paint point on monitor video
+        self.frameLabel.mouseDoubleClickEvent = self.getPoints
+
         self.frameLabel.menu.triggered.connect(self.handleContextMenuAction)
         self.startButton.released.connect(self.startThread)
         self.pauseButton.released.connect(self.pauseThread)
@@ -328,3 +335,11 @@ class CameraView(QWidget, Ui_CameraView):
             self.newImageProcessingFlags.emit(self.imageProcessingFlags)
         elif action.text() == "Settings...":
             self.setImageProcessingSettings()
+
+    def getPoints(self, event):
+        qDebug("Get points!")
+        if self.get_points_flag:
+            x = event.x()
+            y = event.y()
+            self.counter_area.append(x,y)
+        print(self.counter_area)

@@ -23,10 +23,10 @@
    </size>
   </property>
   <property name="windowTitle">
-   <string>qt-opencv-multithreaded</string>
+   <string>VAA Ai-Go!</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <layout class="QVBoxLayout" name="verticalLayout" stretch="1">
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="0">
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="sizePolicy">
@@ -39,11 +39,21 @@
        <string notr="true">QTabBar::tab{height:17}</string>
       </property>
       <property name="currentIndex">
-       <number>-1</number>
+       <number>1</number>
       </property>
       <property name="tabsClosable">
        <bool>false</bool>
       </property>
+      <widget class="QWidget" name="LiveCamera">
+       <attribute name="title">
+        <string>Live</string>
+       </attribute>
+      </widget>
+      <widget class="QWidget" name="Processing">
+       <attribute name="title">
+        <string>Processing</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -54,7 +64,7 @@
      <x>0</x>
      <y>0</y>
      <width>617</width>
-     <height>26</height>
+     <height>22</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuFile">
@@ -68,6 +78,8 @@
      <string>Help</string>
     </property>
     <addaction name="actionAbout"/>
+    <addaction name="actionContact"/>
+    <addaction name="actionHelp_VAA_Ai_Go"/>
    </widget>
    <widget class="QMenu" name="menuOptions">
     <property name="title">
@@ -81,9 +93,32 @@
     </property>
     <addaction name="actionFullScreen"/>
    </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <widget class="QMenu" name="menuLanguages">
+     <property name="title">
+      <string>Languages</string>
+     </property>
+     <addaction name="actionEnglish"/>
+     <addaction name="actionVietnamese"/>
+    </widget>
+    <widget class="QMenu" name="menuThemes">
+     <property name="title">
+      <string>Themes</string>
+     </property>
+     <addaction name="actionDark"/>
+     <addaction name="actionWhite"/>
+    </widget>
+    <addaction name="menuLanguages"/>
+    <addaction name="menuThemes"/>
+    <addaction name="actionConfiguration"/>
+   </widget>
    <addaction name="menuFile"/>
    <addaction name="menuOptions"/>
    <addaction name="menuView"/>
+   <addaction name="menuSettings"/>
    <addaction name="menuHelp"/>
   </widget>
   <action name="actionAbout">
@@ -118,6 +153,41 @@
    </property>
    <property name="text">
     <string>Full Screen(&amp;F)</string>
+   </property>
+  </action>
+  <action name="actionVietnamese">
+   <property name="text">
+    <string>Vietnamese</string>
+   </property>
+  </action>
+  <action name="actionEnglish">
+   <property name="text">
+    <string>English</string>
+   </property>
+  </action>
+  <action name="actionContact">
+   <property name="text">
+    <string>Contact</string>
+   </property>
+  </action>
+  <action name="actionHelp_VAA_Ai_Go">
+   <property name="text">
+    <string>Help VAA Ai-Go!</string>
+   </property>
+  </action>
+  <action name="actionConfiguration">
+   <property name="text">
+    <string>Configuration</string>
+   </property>
+  </action>
+  <action name="actionDark">
+   <property name="text">
+    <string>Dark</string>
+   </property>
+  </action>
+  <action name="actionWhite">
+   <property name="text">
+    <string>White</string>
    </property>
   </action>
  </widget>

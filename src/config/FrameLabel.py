@@ -1,9 +1,9 @@
 from PyQt5.QtWidgets import QLabel, QMenu, QAction
-from PyQt5.QtCore import QPoint, pyqtSignal, Qt
+from PyQt5.QtCore import QPoint, QRect, Qt, pyqtSignal, qDebug
 from PyQt5.QtGui import QPainter
+import numpy as np
 
 from src.config.Structures import *
-
 
 class FrameLabel(QLabel):
     newMouseData = pyqtSignal(MouseData)
@@ -11,6 +11,11 @@ class FrameLabel(QLabel):
 
     def __init__(self, parent=None):
         super(FrameLabel, self).__init__(parent)
+        
+        # paramater angle of position when user mouse click
+        self.countArea = []
+        self.get_point_flag = 0
+
         self.menu = None
         self.mouseData = MouseData()
         self.startPoint = QPoint()
@@ -26,9 +31,10 @@ class FrameLabel(QLabel):
         self.mouseData.rightButtonRelease = False
         self.createContextMenu()
 
-    def mouseMoveEvent(self, ev):
+    def mouseMoveEvent(self, event):
+        qDebug("Mouse move in monitor")
         # Save mouse cursor position
-        self.setMouseCursorPos(ev.pos())  # QPoint
+        self.setMouseCursorPos(event.pos())  # QPoint
         # Update box width and height if box drawing is in progress
         if self.drawBox:
             self.box.setWidth(
@@ -38,17 +44,20 @@ class FrameLabel(QLabel):
         # Inform main window of mouse move event
         self.onMouseMoveEvent.emit()
 
-    def setMouseCursorPos(self, data):
+    def setMouseCursorPos(self, data): 
+        print("Cursor position mouse is: ", data)
         self.mouseCursorPos = data
 
     def getMouseCursorPos(self):
-        return self.mouseCursorPos
+        pos = self.mouseCursorPos
+        print("Cursor position is: ", pos)
+        return pos
 
-    def mouseReleaseEvent(self, ev):
+    def mouseReleaseEvent(self, event):
         # Update cursor position
-        self.setMouseCursorPos(ev.pos())
+        self.setMouseCursorPos(event.pos())
         # On left mouse button release
-        if ev.button() == Qt.LeftButton:
+        if event.button() == Qt.LeftButton:
             # Set leftButtonRelease flag to True
             self.mouseData.leftButtonRelease = True
             if self.drawBox:
@@ -66,21 +75,25 @@ class FrameLabel(QLabel):
             # Set leftButtonRelease flag to False
             self.mouseData.leftButtonRelease = False
         # On right mouse button release
-        elif ev.button() == Qt.RightButton:
+        elif event.button() == Qt.RightButton:
             # If user presses (and then releases) the right mouse button while drawing box, stop drawing box
             if self.drawBox:
                 self.drawBox = False
             else:
                 # Show context menu
-                self.menu.exec(ev.globalPos())
+                self.menu.exec(event.globalPos())
 
-    def mousePressEvent(self, ev):
+    def mousePressEvent(self, event):
         # Update cursor position
-        self.setMouseCursorPos(ev.pos())
-        if ev.button() == Qt.LeftButton:
+        self.setMouseCursorPos(event.pos())
+        if event.button() == Qt.LeftButton:
             # Start drawing box
-            self.startPoint = ev.pos()
-            self.box = QRect(self.startPoint.x(), self.startPoint.y(), 0, 0)
+            self.startPoint = event.pos()
+            x = self.startPoint.x()
+            y = self.startPoint.y()
+            self.countArea.append([int(x), int(y)])
+            self.box = QRect(x, y, 0, 0)
+            print(self.countArea)
             self.drawBox = True
 
     def paintEvent(self, ev):
@@ -90,6 +103,14 @@ class FrameLabel(QLabel):
         if self.drawBox:
             painter.setPen(Qt.blue)
             painter.drawRect(self.box)
+
+    def getPonts(self, event):
+        if self.get_point_flag:
+            x = self.startPoint.x()
+            y = self.startPoint.y()
+            self.countArea.append([int(x), int(y)])
+        exampleImageWithArea = copy.deepcopy()
+        #for point in self.countArea:
 
     def createContextMenu(self):
         # Create top-level menu object
