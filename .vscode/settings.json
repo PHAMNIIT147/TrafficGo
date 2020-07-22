@@ -1,0 +1,7 @@
+{
+    "files.exclude": {
+        "\"**/__pycache__\": true": true,
+        "\"**/*.pyc\": {\"when\": \"$(basename).py\"} ": true
+    },
+    "editor.minimap.scale": 2
+}

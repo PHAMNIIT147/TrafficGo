@@ -32,7 +32,6 @@ class FrameLabel(QLabel):
         self.createContextMenu()
 
     def mouseMoveEvent(self, event):
-        qDebug("Mouse move in monitor")
         # Save mouse cursor position
         self.setMouseCursorPos(event.pos())  # QPoint
         # Update box width and height if box drawing is in progress
@@ -45,12 +44,10 @@ class FrameLabel(QLabel):
         self.onMouseMoveEvent.emit()
 
     def setMouseCursorPos(self, data): 
-        print("Cursor position mouse is: ", data)
         self.mouseCursorPos = data
 
     def getMouseCursorPos(self):
         pos = self.mouseCursorPos
-        print("Cursor position is: ", pos)
         return pos
 
     def mouseReleaseEvent(self, event):

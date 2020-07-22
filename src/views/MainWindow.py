@@ -11,10 +11,10 @@ from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QMessageBox, QDialog, QTabWidget, QAbstractButton, qApp
 from src.ui.ui_MainWindow import Ui_MainWindow
 from src.config.SharedImageBuffer import SharedImageBuffer
-from src.view.CameraConnectDialog import CameraConnectDialog
-from src.view.CameraView import CameraView
-from src.config.Buffer import *
-from src.config.Config import *
+from src.views.CameraConnectDialog import CameraConnectDialog
+from src.views.CameraView import CameraView
+from src.Buffer import *
+from src.Config import *
 import sys
 
 APP_VERSION = "1.0.0"
