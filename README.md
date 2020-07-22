@@ -1,10 +1,10 @@
 <p align="center">
   <img src="assets/logo/logo.png" width="200">
 </p>
-<h1 align="center">VAA AI-GO!</h1>
-<h3 align="center">Simple yet powerful, open-source VAA launch tracker</h3>
+<h1 align="center">VAA Ai Go!</h1>
+<h3 align="center">Vehicle Speed Estimation and Error Detection Based on Deep Learning - Internet Of Things</h3>
 
-<!-- <p align="center">
+<p align="center">
   <a href="https://opensource.org/licenses/MIT">
     <img src="https://img.shields.io/github/license/jesusrp98/spacex-go.svg?style=for-the-badge">
   </a>
@@ -20,7 +20,7 @@
   <a href="https://play.google.com/store/apps/details?id=com.chechu.cherry">
     <img src="https://img.shields.io/badge/Google-PlayStore-green.svg?style=for-the-badge">
   </a>
-</p> -->
+</p> 
 
 ### About the project
 
@@ -31,34 +31,16 @@ From the start, SpaceX GO! has been developed to be light-weight, fast and easy 
 This project has been built using the [Flutter](https://flutter.io/) framework, which allows to build an app for mobile, desktop & web, from a single codebase.
 
 <p align="center">
-  <img src="#" width="256" hspace="4">
-  <img src="#" width="256" hspace="4">
-  <img src="#" width="256" hspace="4">
+  <img src="assets/img/picture.png" width="256" hspace="4">
 </p>
 
 ## Features
 
-- **Launch tracking & details**: detailed list of past & upcoming launches.
-- **Notifications support**: be notify before the rocket leaves the launch pad.
-- **Vehicle catalogue**: read about all rockets, capsules & ships SpaceX has develop over the years.
-- **Ships tracker**: tells position, speed & status of all active ships used by SpaceX.
-- **Tesla Roadster tracker**: orbit, speed & distance of the Elon Musk's Tesla Roadster.
-- **Core & capsules details**: more information about each core & capsules launched.
-- **Company details**: general company details & achievements.
+
 
 ## Download & install
 
-First, clone the repository with the 'clone' command, or just download the zip.
 
-```
-$ git clone git@github.com:jesusrp98/spacex-go.git
-```
-
-Then, download either Android Studio or Visual Studio Code, with their respective [Flutter editor plugins](https://flutter.io/get-started/editor/). For more information about Flutter installation procedure, check the [official install guide](https://flutter.io/get-started/install/).
-
-Install dependencies from pubspec.yaml by running `flutter packages get` from the project root (see [using packages documentation](https://flutter.io/using-packages/#adding-a-package-dependency-to-an-app) for details and how to do this in the editor).
-
-There you go, you can now open & edit the project. Enjoy!
 
 ## Built with
 
@@ -68,22 +50,89 @@ There you go, you can now open & edit the project. Enjoy!
 
 ## Authors
 
-- **Jesús Rodríguez** - lead developer: [GitHub](https://github.com/jesusrp98), [Twitter](https://twitter.com/jesusrp98) & [Reddit](https://www.reddit.com/user/jesusrp98).
-- **Matias de Andrea** - UI/UX designer: [GitHub](https://github.com/deandreamatias), [Twitter](https://twitter.com/deandreamatias) & [Behance](https://www.behance.net/deandreamatias).
-- **/u/OuterSpaceCitizen** - Portuguese translations.
-- **loopsun** - Simplified Chinese translations.
-- **Charlie Merland** - French translations.
-- **Tommi Avery** - Italian translations.
 
 ## Contributing
 
-If you want to take the time to make this project better, please read the [contributing guides](https://github.com/jesusrp98/spacex-go/blob/master/CONTRIBUTING.md) first. Then, you can open an new [issue](https://github.com/jesusrp98/spacex-go/issues/new/choose), of a [pull request](https://github.com/jesusrp98/spacex-go/compare).
 
 ## License
 
 This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details.
 
 # Reference 
+- This project using model build from Factory (Clean Architecture)
+## MVC Project
+```
+- src/
+  |_ controllers/
+  |  |_ FarmeLabel.py
+  |  |   + mouseMoveEvent(event)
+  |  |   + setMouseEvent(data)
+  |  |   + getMouseCursorPos()
+  |  |   + mouseReleaseEvent(event)
+  |  |   + mouseRelaseEvent(event)
+  |  |   + mousePressEvent(event)
+  |  |   + paintEvent(event)
+  |  |   + getPonts(event)
+  |  |   + createContecMenu()
+  |  |    -> processing user actions
+  |  |_ ImageProcessingSettingsDialog.py
+  |  |   + updateStoreSettingFromDialog()
+  |  |   + updateDialogSettingFromStored()
+  |  |   + resetAllDialogToDefaults()
+  |  |   + smothTypeChange(input)
+  |  |   + validateDialog()
+  |  |   + resetSmoothDialogDefault()
+  |  |   + resetDilateDialogToDefault()
+  |  |   + resetErodeDialogToDefault()
+  |  |   + resetFlipDialogToDefault()
+  |  |   + resetCannyDialogToDefault() 
+  |_ model/
+  |  |_ core/
+  |  |   -> processing call YoloV3 algorithm. The enviroment relationship of object detection
+  |  |   + ./
+  |  |_ Buffer.py 
+  |  |   + add(data, dropFull=False)
+  |  |   + get()
+  |  |   + clear()
+  |  |   + size()
+  |  |   + maxSize()
+  |  |   + ifFull()
+  |  |   + isEmpty()
+  |  |_ CaptureThread.py 
+  |  |   + run() # by overriding the run() method in a subclass.
+  |  |   + stop()
+  |  |   + connectToCamera()
+  |  |   + disconnectCamera()
+  |  |   + isCameraConnected()
+  |  |   + getInputSourceWdith()
+  |  |   +  getInputSourceHeight()
+  |  |   + updateFPS(timeElapsed)
+  |  |_ MatToQImage.py
+  |  |   + matQImage(data)
+  |  |_ ProcessingThread.py
+  |  |   + run() # by overriding the run() method in a subclass.
+  |  |   + doShowImage(value)
+  |  |   + updateFPS(timeEplased)
+  |  |   + stop()
+  |  |   + updateBoxesBufferMax(imgProcFlags)
+  |  |   + updateImageProcessingFlags(imgProcFlags)
+  |  |   + updateImageProcessing(imgProcSettings)
+  |  |   + setROI(roi)
+  |  |   + getCurrentROI()
+  |  |_ SharedImageBuffer.py
+  |  |   + add(deviceUrl, imageBuffer, sync=False)
+  |  |   + getByDeviceUrl(deviceUrl)
+  |  |   + removeByDevicesUrl(deviceUrl)
+  |  |   + sync(deviceUrl)
+  |  |   + wakeAll()
+  |  |   + setSyncEnabled(enable)
+  |  |   + isSyncEnabledForDeviceUrl(deviceUrl)
+  |  |   + getSyncEnbaled()
+  |  |   + containsImageBufferForDeviceUrl(deviceUrl)
+  |_ views/
+  |  | -> UI layers 
+```
+
 
 ## SORT
 
