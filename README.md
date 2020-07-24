@@ -28,8 +28,8 @@ The purpose of this project is to create a software system to monitor the speed 
 This project has been built using the [PyQt5](https://www.qt.io/design?utm_campaign=Navigation%202019&utm_source=Nav%202019) framework, which allows to build an app for mobile, desktop & web from a single codebase.
 
 <p align="center">
-<img src="assets/img/dialog.png" width="256" hspace="4">
-  <img src="assets/img/processing.png" width="256" hspace="4">
+<img src="assets/img/dialog.png" width="512" hspace="4">
+  <img src="assets/img/processing.png" width="265" hspace="10">
 </p>
 
 ## Features
