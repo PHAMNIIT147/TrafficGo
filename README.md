@@ -2,7 +2,7 @@
   <img src="assets/logo/logo.png" width="200">
 </p>
 <h1 align="center">VAA Ai Go!</h1>
-<h3 align="center">Vehicle Speed Estimation and Error Detection Based on Deep Learning - Internet Of Things</h3>
+<h3 align="center">Vehicle speed estimation and error detection using Deep Learning - Internet Of Things</h3>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT">
@@ -23,12 +23,9 @@
 </p> 
 
 ### About the project
+The purpose of this project is to create a software system to monitor the speed of vehicles on the road and detect cases exceeding the speed limit, impose penalties according to the laws of the host country, help improve security. safe and minimize traffic accidents with the use of deep learning models in the system.
 
-The purpose of this project is to develop the ultimate SpaceX experience in a variety of platforms. A single experience, from a single codebase.
-
-From the start, SpaceX GO! has been developed to be light-weight, fast and easy to use. It takes all the data from the open-source r/SpaceX REST API, which can be found [here](https://github.com/r-spacex/SpaceX-API).
-
-This project has been built using the [Flutter](https://flutter.io/) framework, which allows to build an app for mobile, desktop & web, from a single codebase.
+This project has been built using the [PyQt5](https://www.qt.io/design?utm_campaign=Navigation%202019&utm_source=Nav%202019) framework, which allows to build an app for mobile, desktop & web from a single codebase.
 
 <p align="center">
   <img src="assets/img/picture.png" width="256" hspace="4">
@@ -49,8 +46,9 @@ This project has been built using the [Flutter](https://flutter.io/) framework, 
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
 
 ## Authors
-
-
+- ** Phong .Pham Thanh ** - software developer:[Github]{},[Twitter]{},[Linkdln]{},[Viber]{}
+- ** Phuoc .Ha Quang ** - Ai Engineer: [Facebook]{}.[Viber]{}
+- ** Tuan .Nguyen Van Anh ** - 
 ## Contributing
 
 
@@ -60,7 +58,8 @@ This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LIC
 
 # Reference 
 - This project using model build from Factory (Clean Architecture)
-## MVC Project
+## MVC model of project
+
 ```
 - src/
   |_ controllers/
