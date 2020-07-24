@@ -28,7 +28,8 @@ The purpose of this project is to create a software system to monitor the speed 
 This project has been built using the [PyQt5](https://www.qt.io/design?utm_campaign=Navigation%202019&utm_source=Nav%202019) framework, which allows to build an app for mobile, desktop & web from a single codebase.
 
 <p align="center">
-  <img src="assets/img/picture.png" width="256" hspace="4">
+<img src="assets/img/dialog.png" width="256" hspace="4">
+  <img src="assets/img/processing.png" width="256" hspace="4">
 </p>
 
 ## Features
@@ -36,7 +37,6 @@ This project has been built using the [PyQt5](https://www.qt.io/design?utm_campa
 
 
 ## Download & install
-
 
 
 ## Built with
@@ -48,7 +48,7 @@ This project has been built using the [PyQt5](https://www.qt.io/design?utm_campa
 ## Authors
 - ** Phong .Pham Thanh ** - software developer:[Github]{},[Twitter]{},[Linkdln]{},[Viber]{}
 - ** Phuoc .Ha Quang ** - Ai Engineer: [Facebook]{}.[Viber]{}
-- ** Tuan .Nguyen Van Anh ** - 
+- ** Tuan .Nguyen Van Anh ** - Inter Supporter: [Github]{}, [Facebook]{}
 ## Contributing
 
 
