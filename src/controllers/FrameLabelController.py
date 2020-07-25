@@ -3,15 +3,16 @@ from PyQt5.QtCore import QPoint, QRect, Qt, pyqtSignal, qDebug
 from PyQt5.QtGui import QPainter
 import numpy as np
 
-from src.config.Structures import *
+from src.utils.Structures import *
 
-class FrameLabel(QLabel):
+
+class FrameLabelController(QLabel):
     newMouseData = pyqtSignal(MouseData)
     onMouseMoveEvent = pyqtSignal()
 
     def __init__(self, parent=None):
         super(FrameLabel, self).__init__(parent)
-        
+
         # paramater angle of position when user mouse click
         self.countArea = []
         self.get_point_flag = 0
@@ -43,7 +44,7 @@ class FrameLabel(QLabel):
         # Inform main window of mouse move event
         self.onMouseMoveEvent.emit()
 
-    def setMouseCursorPos(self, data): 
+    def setMouseCursorPos(self, data):
         self.mouseCursorPos = data
 
     def getMouseCursorPos(self):
@@ -107,7 +108,7 @@ class FrameLabel(QLabel):
             y = self.startPoint.y()
             self.countArea.append([int(x), int(y)])
         exampleImageWithArea = copy.deepcopy()
-        #for point in self.countArea:
+        # for point in self.countArea:
 
     def createContextMenu(self):
         # Create top-level menu object
@@ -148,6 +149,10 @@ class FrameLabel(QLabel):
         menu_imgProc.addAction(action)
         action = QAction(self)
         action.setText("Canny")
+        action.setCheckable(True)
+        menu_imgProc.addAction(action)
+        action = QAction(self)
+        action.setText("Speed")
         action.setCheckable(True)
         menu_imgProc.addAction(action)
         menu_imgProc.addSeparator()

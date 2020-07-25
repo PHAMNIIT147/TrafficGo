@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from src.config.FrameLabel import FrameLabel
+from src.controllers.FrameLabel import FrameLabel
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 

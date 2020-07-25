@@ -1,7 +1,6 @@
 from PyQt5.QtCore import QSemaphore, QMutex
 from queue import Queue
 
-
 class Buffer(object):
     def __init__(self, size):
         # Save buffer size
@@ -21,17 +20,6 @@ class Buffer(object):
         self.clearBuffer_add.acquire()
         # If dropping is enabled, do not block if buffer is full
         if dropIfFull:
-            # Try and acquire semaphore to add item
-
-            # Drop new frame
-            # if self.freeSlots.tryAcquire():
-            #     # Add item to queue
-            #     self.queueProtect.lock()
-            #     self.queue.put(data)
-            #     self.queueProtect.unlock()
-            #     # Release semaphore
-            #     self.usedSlots.release()
-
             # Drop oldest frame
             ret = self.freeSlots.tryAcquire()
             self.queueProtect.lock()

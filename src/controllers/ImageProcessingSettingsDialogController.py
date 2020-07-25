@@ -2,12 +2,12 @@ from PyQt5.QtWidgets import QMessageBox, QDialog
 from PyQt5.QtCore import QRegExp, pyqtSignal
 from PyQt5.QtGui import QRegExpValidator, QDoubleValidator
 
-from src.ui.ui_ImageProcessingSettingsDialog import Ui_ImageProcessingSettingsDialog
-from src.config.Structures import *
-from src.config.Config import *
+from src.views.ui.ui_ImageProcessingSettingsDialog import Ui_ImageProcessingSettingsDialog
+from src.utils.Structures import *
+from src.utils.Config import *
 
 
-class ImageProcessingSettingsDialog(QDialog, Ui_ImageProcessingSettingsDialog):
+class ImageProcessingSettingsDialogController(QDialog, Ui_ImageProcessingSettingsDialog):
     newImageProcessingSettings = pyqtSignal(ImageProcessingSettings)
 
     def __init__(self, parent=None):

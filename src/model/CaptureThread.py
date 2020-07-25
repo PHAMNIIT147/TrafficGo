@@ -4,6 +4,7 @@
  # @ Modified by: VAA AI
  # @ Modified time: 2020-07-08 14:45:11
  # @ Description:
+    - Misson connect with camera device from local or address when user setup for system...
  '''
 
 from PyQt5.QtCore import QThread, QTime, QMutexLocker, QMutex, pyqtSignal, qDebug
@@ -12,8 +13,8 @@ import cv2
 from queue import Queue
 import os
 
-from src.config.Structures import *
-from src.config.Config import *
+from src.utils.Structures import *
+from src.utils.Config import *
 
 class CaptureThread(QThread):
     updateStatisticsInGUI = pyqtSignal(ThreadStatisticsData)
@@ -96,14 +97,11 @@ class CaptureThread(QThread):
             # Start timer (used to calculate captureture rate)
             self.time.start()
 
-        qDebug("Run -> Stopping captureture thread...")
-
     def stop(self):
         with QMutexLocker(self.doStopMutex):
             self.doStop = True
 
     def connectToCamera(self):
-        qDebug("Connet to your camera!")
         # Open camera
         camOpenResult = self.capture.open(self._deviceUrl, self.apiPreference)
         # Set resolution
@@ -122,10 +120,8 @@ class CaptureThread(QThread):
         return camOpenResult
 
     def disconnectCamera(self):
-        qDebug("Disconnect to your camera")
         # Camera is connected
         if self.capture.isOpened():
-            qDebug("Camera is open!")
             # Disconnect camera
             self.capture.release()
             return True
@@ -134,21 +130,17 @@ class CaptureThread(QThread):
             return False
 
     def isCameraConnected(self):
-        qDebug("Camera is open!")
         return self.capture.isOpened()
 
     def getInputSourceWidth(self):
         width = int(self.capture.get(cv2.CAP_PROP_FRAME_WIDTH))
-        print("width is: %d", width)
         return width
 
     def getInputSourceHeight(self):
         height = int(self.capture.get(cv2.CAP_PROP_FRAME_HEIGHT))
-        print("Height is: %d", height)
         return height
 
     def updateFPS(self, timeElapsed):
-        print("time elapsed is: %d", timeElapsed)
         # Add instantaneous FPS value to queue
         if timeElapsed > 0:
             self.fps.put(1000 / timeElapsed)
@@ -165,7 +157,6 @@ class CaptureThread(QThread):
                 self.fpsSum += self.fps.get()
             # Calculate average FPS
             self.statsData.averageFPS = self.fpsSum / CAPTURE_FPS_STAT_QUEUE_LENGTH
-            print("Average FPS is: %d", self.statsData.averageFPS)
             # Reset sum
             self.fpsSum = 0.0
             # Reset sample Number

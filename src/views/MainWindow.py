@@ -1,20 +1,20 @@
 '''
  # @ Author: Pham Thanh Phong
  # @ Create Time: 2020-07-06 23:05:57
- # @ Modified by: VAA AI
+ # @ Modified by: VAA Ai Go!
  # @ Modified time: 2020-07-08 15:27:25
  # @ Description:
  '''
 import qdarkstyle
-from PyQt5.QtCore import Qt, QSize, qDebug
+from PyQt5.QtCore import Qt, QSize, qDebug, QFile, QTextStream
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QMessageBox, QDialog, QTabWidget, QAbstractButton, qApp
-from src.ui.ui_MainWindow import Ui_MainWindow
-from src.config.SharedImageBuffer import SharedImageBuffer
+from src.views.ui.ui_MainWindow import Ui_MainWindow
+from src.model.SharedImageBuffer import SharedImageBuffer
 from src.views.CameraConnectDialog import CameraConnectDialog
 from src.views.CameraView import CameraView
-from src.Buffer import *
-from src.Config import *
+from src.model.Buffer import *
+from src.utils.Config import *
 import sys
 
 APP_VERSION = "1.0.0"
@@ -49,8 +49,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionFullScreen.toggled.connect(self.setFullScreen)
         ## settings -> theme -> option_theme
         ## return: default theme app is white
-        self.actionDark.triggered.connect(lambda: qApp.setStyleSheet(qdarkstyle.load_stylesheet_pyqt5()))
-        self.actionWhite.triggered.connect(lambda: qApp.setStyleSheet(qdarkstyle.load_stylesheet()))
+        self.actionDark.triggered.connect(lambda: self.toggle_stylesheet(DARK_STYLE))
+        self.actionWhite.triggered.connect(lambda: self.toggle_stylesheet(LIGHT_STYLE))
         # Create SharedImageBuffer object
         self.sharedImageBuffer = SharedImageBuffer()
         # Camera number
@@ -215,7 +215,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                 "Contact: phongpham663@gmail.com\n"
                                 "Website: https://zik-iot-software-9bcf6.web.app/\n"
                                 "Version: %s\n\n"
-                                "Refactoring by GITHUB-PHAMNIIT147\n\n" % APP_VERSION)
+                                "Refactoring by Github@PHAMNIIT147\n\n" % APP_VERSION)
 
     def getFromDictByTabIndex(self, dic, tabIndex):
         for k, v in dic.items():
@@ -237,5 +237,19 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         for item in tabs.findChildren(QAbstractButton):
             if item.inherits("CloseButton"):
                 item.setToolTip(tooltip)
+
+    def toggle_stylesheet(self, path):
+        '''
+        Toggle the stylesheet to use the desired path in the Qt resource
+        system (prefixed by `:/`) or generically (a path to a file on system).
+        :path: A full path to a resource or file on system
+        '''
+        if qApp is None:
+            raise RuntimeError("No Qt Application found")
+        file = QFile(path)
+        file.open(QFile.ReadOnly | QFile.Text)
+        stream = QTextStream(file)
+        qApp.setStyleSheet(stream.readAll())
+            
 
 

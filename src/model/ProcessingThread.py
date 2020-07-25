@@ -3,9 +3,9 @@ from PyQt5.QtGui import QImage
 from queue import Queue
 import cv2
 
-from src.config.MatToQImage import matToQImage
-from src.config.Structures import *
-from src.config.Config import *
+from src.model.MatToQImage import matToQImage
+from src.utils.Structures import *
+from src.utils.Config import *
 
 
 class ProcessingThread(QThread):
@@ -109,6 +109,11 @@ class ProcessingThread(QThread):
                                                   apertureSize=self.imgProcSettings.cannyApertureSize,
                                                   L2gradient=self.imgProcSettings.cannyL2gradient)
 
+                # Speed estimation
+                if self.imgProcFlags.speedOn:
+                    self.currentFrame = cv2.putText(
+                        self.currentFrame, "Speed estimation",(94, 92),cv2.FONT_HERSHEY_SIMPLEX,1, (255, 0, 0),2)
+
                 ##################################
                 # PERFORM IMAGE PROCESSING ABOVE #
                 ##################################
@@ -119,11 +124,9 @@ class ProcessingThread(QThread):
                 # Inform GUI thread of new frame (QImage)
                 self.newFrame.emit(self.frame)
 
-            # Update statistics
-            self.updateFPS(self.processingTime)
-            self.statsData.nFramesProcessed += 1
-            # Inform GUI of updated statistics
-            self.updateStatisticsInGUI.emit(self.statsData)
+        self.updateFPS(self.processingTime)
+        self.statsData.nFramesProcessed += 1
+        self.updateStatisticsInGUI.emit(self.statsData)
 
         qDebug("Stopping processing thread...")
 
@@ -170,6 +173,7 @@ class ProcessingThread(QThread):
             self.imgProcFlags.erodeOn = imgProcFlags.erodeOn
             self.imgProcFlags.flipOn = imgProcFlags.flipOn
             self.imgProcFlags.cannyOn = imgProcFlags.cannyOn
+            self.imgProcFlags.speedOn = imgProcFlags.speedOn
 
     def updateImageProcessingSettings(self, imgProcSettings):
         with QMutexLocker(self.processingMutex):

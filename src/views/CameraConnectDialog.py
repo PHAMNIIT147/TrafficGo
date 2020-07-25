@@ -1,7 +1,7 @@
 
 
-from src.ui.ui_CameraConnectDialog import Ui_CameraConnectDialog
-from src.config.Config import *
+from src.views.ui.ui_CameraConnectDialog import Ui_CameraConnectDialog
+from src.utils.Config import *
 from PyQt5.QtWidgets import QDialog, QMessageBox, QFileDialog
 from PyQt5.QtCore import QRegExp, qDebug, QThread
 from PyQt5.QtGui import QRegExpValidator
@@ -176,8 +176,6 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
         self.filenameEdit.setText(filename)
 
     def resetToDefaults(self):
-        qDebug("Reset default settings!")
-
         # Resolution
         self.resWEdit.clear()
         self.resHEdit.clear()

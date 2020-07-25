@@ -1,11 +1,11 @@
 from PyQt5.QtWidgets import QWidget, QMessageBox, QDialog
 from PyQt5.QtCore import qDebug, QRect, pyqtSignal, Qt
 from PyQt5.QtGui import QPixmap
-from src.ui.ui_CameraView import Ui_CameraView
-from src.core.CaptureThread import CaptureThread
-from src.model.ImageProcessingSettingsDialog import ImageProcessingSettingsDialog
+from src.views.ui.ui_CameraView import Ui_CameraView
+from src.model.CaptureThread import CaptureThread
+from src.controllers.ImageProcessingSettingsDialog import ImageProcessingSettingsDialog
 from src.model.ProcessingThread import ProcessingThread
-from src.config.Structures import *
+from src.utils.Structures import *
 
 
 class CameraView(QWidget, Ui_CameraView):
@@ -14,11 +14,6 @@ class CameraView(QWidget, Ui_CameraView):
 
     def __init__(self, parent, deviceUrl, sharedImageBuffer, cameraId):
         super(CameraView, self).__init__(parent)
-
-        self.counter_area = []
-        self.get_points_flag = 0
-        
-
         self.sharedImageBuffer = sharedImageBuffer
         self.cameraId = cameraId
         # Create image processing settings dialog
@@ -47,8 +42,6 @@ class CameraView(QWidget, Ui_CameraView):
         self.clearImageBufferButton.released.connect(self.clearImageBuffer)
         self.frameLabel.onMouseMoveEvent.connect(
             self.updateMouseCursorPosLabel)
-        # paint point on monitor video
-        self.frameLabel.mouseDoubleClickEvent = self.getPoints
 
         self.frameLabel.menu.triggered.connect(self.handleContextMenuAction)
         self.startButton.released.connect(self.startThread)
@@ -333,13 +326,8 @@ class CameraView(QWidget, Ui_CameraView):
         elif action.text() == "Canny":
             self.imageProcessingFlags.cannyOn = action.isChecked()
             self.newImageProcessingFlags.emit(self.imageProcessingFlags)
+        elif action.text() == "Speed":
+            self.imageProcessingFlags.speedOn = action.isChecked()
+            self.newImageProcessingFlags.emit(self.imageProcessingFlags)
         elif action.text() == "Settings...":
             self.setImageProcessingSettings()
-
-    def getPoints(self, event):
-        qDebug("Get points!")
-        if self.get_points_flag:
-            x = event.x()
-            y = event.y()
-            self.counter_area.append(x,y)
-        print(self.counter_area)

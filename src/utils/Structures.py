@@ -25,6 +25,7 @@ class ImageProcessingFlags(object):
         self.erodeOn = False
         self.flipOn = False
         self.cannyOn = False
+        self.speedOn = False
 
 
 class MouseData(object):
