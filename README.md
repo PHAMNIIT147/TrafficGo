@@ -22,13 +22,9 @@ This project has been built using the [PyQt5](https://www.qt.io/design?utm_campa
 
 ## Features
 
-
-
 ## Download & install
 
-
 ## Built with
-
 - [Flutter](https://flutter.dev/) - Beautiful native apps in record time.
 - [Android Studio](https://developer.android.com/studio/index.html/) - Tools for building apps on every type of Android device.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
@@ -37,9 +33,9 @@ This project has been built using the [PyQt5](https://www.qt.io/design?utm_campa
 - ** Phong .Pham Thanh ** - Software Engineer:[Github]{},[Twitter]{},[Linkdln]{},[Viber]{}
 - ** Phuoc .Ha Quang ** - Ai Engineer: [Facebook]{}.[Viber]{}
 - ** Tuan .Nguyen Van Anh ** - Inter Supporter: [Github]{}, [Facebook]{}
+
 ## Contributing
 
 
 ## License
-
 This project is licensed under the GNU GPL v3 License - see the [LICENSE.md](LICENSE.md) file for details.
