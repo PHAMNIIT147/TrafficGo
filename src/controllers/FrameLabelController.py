@@ -13,10 +13,6 @@ class FrameLabelController(QLabel):
     def __init__(self, parent=None):
         super(FrameLabel, self).__init__(parent)
 
-        # paramater angle of position when user mouse click
-        self.countArea = []
-        self.get_point_flag = 0
-
         self.menu = None
         self.mouseData = MouseData()
         self.startPoint = QPoint()
@@ -94,22 +90,14 @@ class FrameLabelController(QLabel):
             print(self.countArea)
             self.drawBox = True
 
-    def paintEvent(self, ev):
-        QLabel.paintEvent(self, ev)
+    def paintEvent(self, event):
+        QLabel.paintEvent(self, event)
         painter = QPainter(self)
         # Draw box
         if self.drawBox:
             painter.setPen(Qt.blue)
             painter.drawRect(self.box)
-
-    def getPonts(self, event):
-        if self.get_point_flag:
-            x = self.startPoint.x()
-            y = self.startPoint.y()
-            self.countArea.append([int(x), int(y)])
-        exampleImageWithArea = copy.deepcopy()
-        # for point in self.countArea:
-
+            
     def createContextMenu(self):
         # Create top-level menu object
         self.menu = QMenu(self)

@@ -1,7 +1,7 @@
 from PyQt5.QtCore import QSemaphore, QMutex
 from queue import Queue
 
-class Buffer(object):
+class BufferModel(object):
     def __init__(self, size):
         # Save buffer size
         self.bufferSize = size

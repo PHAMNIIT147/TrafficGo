@@ -3,12 +3,12 @@ from PyQt5.QtGui import QImage
 from queue import Queue
 import cv2
 
-from src.model.MatToQImage import matToQImage
+from src.model.MatToQImageModel import matToQImageModel
 from src.utils.Structures import *
 from src.utils.Config import *
 
 
-class ProcessingThread(QThread):
+class ProcessingThreadModel(QThread):
     newFrame = pyqtSignal(QImage)
     updateStatisticsInGUI = pyqtSignal(ThreadStatisticsData)
     kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))

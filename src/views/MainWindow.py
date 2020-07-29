@@ -10,10 +10,10 @@ from PyQt5.QtCore import Qt, QSize, qDebug, QFile, QTextStream
 from PyQt5.QtGui import QKeySequence
 from PyQt5.QtWidgets import QMainWindow, QLabel, QPushButton, QMessageBox, QDialog, QTabWidget, QAbstractButton, qApp
 from src.views.ui.ui_MainWindow import Ui_MainWindow
-from src.model.SharedImageBuffer import SharedImageBuffer
-from src.views.CameraConnectDialog import CameraConnectDialog
+from src.model.SharedImageBufferModel import SharedImageBufferModel
+from src.views.CameraConnectDialogView import CameraConnectDialogView
 from src.views.CameraView import CameraView
-from src.model.Buffer import *
+from src.model.BufferModel import *
 from src.utils.Config import *
 import sys
 
@@ -25,7 +25,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
         # Setup UI
         self.setupUi(self)
-        # Create dict instead of QMap
+        # Create dict instead of QMapz
         self.deviceUrlDict = dict()
         self.cameraViewDict = dict()
         # Set start tab as blank
@@ -49,18 +49,18 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         self.actionFullScreen.toggled.connect(self.setFullScreen)
         ## settings -> theme -> option_theme
         ## return: default theme app is white
-        self.actionDark.triggered.connect(lambda: self.toggle_stylesheet(DARK_STYLE))
-        self.actionWhite.triggered.connect(lambda: self.toggle_stylesheet(LIGHT_STYLE))
-        # Create SharedImageBuffer object
-        self.sharedImageBuffer = SharedImageBuffer()
+        self.actionDark.triggered.connect(lambda: self.toggleStylesheet(DARK_STYLE))
+        self.actionWhite.triggered.connect(lambda: self.toggleStylesheet(LIGHT_STYLE))
+        # Create SharedImageBufferModel object
+        self.sharedImageBufferModel = SharedImageBufferModel()
         # Camera number
         self.cameraNum = 0
 
     def connectToCamera(self):
-        # We cannot connect to a camera if devices are already connected and stream synchronization is in progress
+        # Cannot connect to a camera if devices are already connected and stream synchronization is in progress
         if (self.actionSynchronizeStreams.isChecked()
                 and len(self.deviceUrlDict) > 0
-                and self.sharedImageBuffer.getSyncEnabled()):
+                and self.sharedImageBufferModel.getSyncEnabled()):
             # Prompt user
             QMessageBox.warning(self, "vehicle speed estimation and error detection",
                                 "Stream synchronization is in progress.\n\n"
@@ -73,22 +73,22 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             nextTabIndex = 0 if len(
                 self.deviceUrlDict) == 0 else self.tabWidget.count()
             # Show dialog
-            cameraConnectDialog = CameraConnectDialog(
+            CameraConnectDialogView = CameraConnectDialogView(
                 self, self.actionSynchronizeStreams.isChecked())
-            if cameraConnectDialog.exec() == QDialog.Accepted:
+            if CameraConnectDialogView.exec() == QDialog.Accepted:
                 # Save user-defined device deviceUrl
-                deviceUrl = cameraConnectDialog.getDeviceUrl()
+                deviceUrl = cameraConnectDialogView.getDeviceUrl()
                 # Check if this camera is already connected
                 if deviceUrl not in self.deviceUrlDict:
                     # Create ImageBuffer with user-defined size
                     imageBuffer = Buffer(
-                        cameraConnectDialog.getImageBufferSize())
-                    # Add created ImageBuffer to SharedImageBuffer object
-                    self.sharedImageBuffer.add(
+                        cameraConnectDialogView.gzetImageBufferSize())
+                    # Add created ImageBuffer to SharedImageBufferModel object
+                    self.sharedImageBufferModel.add(
                         deviceUrl, imageBuffer, self.actionSynchronizeStreams.isChecked())
                     # Create CameraView
                     cameraView = CameraView(
-                        self.tabWidget, deviceUrl, self.sharedImageBuffer, self.cameraNum)
+                        self.tabWidget, deviceUrl, self.sharedImageBufferModel, self.cameraNum)
 
                     # Check if stream synchronization is enabled
                     if self.actionSynchronizeStreams.isChecked():
@@ -101,24 +101,24 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                                    QMessageBox.Yes | QMessageBox.No, QMessageBox.Yes)
                         # Start processing
                         if ret == QMessageBox.Yes:
-                            self.sharedImageBuffer.setSyncEnabled(True)
+                            self.sharedImageBufferModel.setSyncEnabled(True)
                         # Defer processing
                         else:
-                            self.sharedImageBuffer.setSyncEnabled(False)
+                            self.sharedImageBufferModel.setSyncEnabled(False)
 
                     # Attempt to connect to camera
                     if cameraView.connectToCamera(
-                            cameraConnectDialog.getDropFrameCheckBoxState(),
-                            cameraConnectDialog.getApiPreference(),
-                            cameraConnectDialog.getCaptureThreadPrio(),
-                            cameraConnectDialog.getProcessingThreadPrio(),
-                            cameraConnectDialog.getEnableFrameProcessingCheckBoxState(),
-                            cameraConnectDialog.getResolutionWidth(),
-                            cameraConnectDialog.getResolutionHeight()):
+                            cameraConnectDialogView.getDropFrameCheckBoxState(),
+                            cameraConnectDialogView.getApiPreference(),
+                            cameraConnectDialogView.getCaptureThreadPrio(),
+                            cameraConnectDialogView.getProcessingThreadPrio(),
+                            cameraConnectDialogView.getEnableFrameProcessingCheckBoxState(),
+                            cameraConnectDialogView.getResolutionWidth(),
+                            cameraConnectDialogView.getResolutionHeight()):
 
                         self.cameraNum += 1
                         # Save tab label
-                        tabLabel = cameraConnectDialog.getTabLabel()
+                        tabLabel = cameraConnectDialogView.getTabLabel()
                         # Allow tabs to be closed
                         self.tabWidget.setTabsClosable(True)
                         # If start tab, remove
@@ -147,7 +147,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                         # Explicitly delete widget
                         cameraView.delete()
                         # Remove from shared buffer
-                        self.sharedImageBuffer.removeByDeviceUrl(deviceUrl)
+                        self.sharedImageBufferModel.removeByDeviceUrl(deviceUrl)
                         # Explicitly delete ImageBuffer object
                         del imageBuffer
                 # Display error message
@@ -158,14 +158,14 @@ class MainWindow(QMainWindow, Ui_MainWindow):
 
     def disconnectCamera(self, index):
         # Local variable(s)
-        doDisconnect = True
+        doDisconnect = True 
 
         # Check if stream synchronization is enabled,
         # more than 1 camera connected,
         # and frame processing is not in progress
         if (self.actionSynchronizeStreams.isChecked()
                 and len(self.cameraViewDict) > 1
-                and not self.sharedImageBuffer.getSyncEnabled()):
+                and not self.sharedImageBufferModel.getSyncEnabled()):
             # Prompt user
             ret = QMessageBox.question(self,
                                        "vehicle speed estimation and error detection",
@@ -217,16 +217,17 @@ class MainWindow(QMainWindow, Ui_MainWindow):
                                 "Version: %s\n\n"
                                 "Refactoring by Github@PHAMNIIT147\n\n" % APP_VERSION)
 
-    def getFromDictByTabIndex(self, dic, tabIndex):
-        for k, v in dic.items():
+    def getFromDictByTabIndex(self, dictionary, tabIndex):
+        for k, v in dictionary.items():
             if v == tabIndex:
                 return k
 
-    def updateDictValues(self, dic, tabIndex):
-        for k, v in dic.items():
+    def updateDictValues(self, dictionary, tabIndex):
+        for k, v in dictionary.items():
             if v > tabIndex:
-                dic[k] = v - 1
+                dictionary[k] = v - 1
 
+    # when user button F11 or trigger full screen
     def setFullScreen(self, flag):
         if flag:
             self.showFullScreen()
@@ -238,7 +239,7 @@ class MainWindow(QMainWindow, Ui_MainWindow):
             if item.inherits("CloseButton"):
                 item.setToolTip(tooltip)
 
-    def toggle_stylesheet(self, path):
+    def toggleStylesheet(self, path):
         '''
         Toggle the stylesheet to use the desired path in the Qt resource
         system (prefixed by `:/`) or generically (a path to a file on system).

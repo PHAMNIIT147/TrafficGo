@@ -16,7 +16,7 @@ import os
 from src.utils.Structures import *
 from src.utils.Config import *
 
-class CaptureThread(QThread):
+class CaptureThreadModel(QThread):
     updateStatisticsInGUI = pyqtSignal(ThreadStatisticsData)
     end = pyqtSignal()
 

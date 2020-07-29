@@ -1,4 +1,10 @@
-
+'''
+ # @ Author: Pham Thanh Phong
+ # @ Create Time: 2020-07-22 09:35:49
+ # @ Modified by: VAA Ai Go!
+ # @ Modified time: 2020-07-28 11:12:45
+ # @ Description:
+ '''
 
 from src.views.ui.ui_CameraConnectDialog import Ui_CameraConnectDialog
 from src.utils.Config import *
@@ -7,14 +13,13 @@ from PyQt5.QtCore import QRegExp, qDebug, QThread
 from PyQt5.QtGui import QRegExpValidator
 import cv2
 
-
-class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
+class CameraConnectDialogView(QDialog, Ui_CameraConnectDialog):
     def __init__(self, parent=None, isStreamSyncEnabled=False):
         super(CameraConnectDialog, self).__init__(parent)
         # Setup dialog
         self.setupUi(self)
         # deviceUrlEdit (device number) input validation
-        # self.deviceUrlEdit.setValidator(QRegExpValidator(QRegExp("^[0-9]{1,3}$")))  # Integers 0 to 999
+        self.deviceUrlEdit.setValidator(QRegExpValidator(QRegExp("^[0-9]{1,3}$")))  # Integers 0 to 999
         # imageBufferSizeEdit (image buffer size) input validation
         self.imageBufferSizeEdit.setValidator(QRegExpValidator(
             QRegExp("^[0-9]{1,3}$")))  # Integers 0 to 999
@@ -32,7 +37,7 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
                               # 'CAP_FIREWIRE': cv2.CAP_FIREWIRE,
                               # 'CAP_FIREWARE': cv2.CAP_FIREWARE,
 
-                              # 'CAP_IEEE1394': cv2.CAP_IEEE1394,
+                              # 'CAP_IEEE1394': cv2.CAP_IEEE1394,x
                               # 'CAP_DC1394': cv2.CAP_DC1394,
                               # 'CAP_CMU1394': cv2.CAP_CMU1394,
                               # 'CAP_QT': cv2.CAP_QT,
@@ -61,7 +66,7 @@ class CameraConnectDialog(QDialog, Ui_CameraConnectDialog):
                               }
         self.apiPreferenceComboBox.addItems(self.apiPreference.keys())
 
-        # Setup capture prio combo boxes
+        # Setup capture priority combo boxes
         threadPriorities = ["Idle", "Lowest", "Low", "Normal",
                             "High", "Highest", "Time Critical", "Inherit"]
 

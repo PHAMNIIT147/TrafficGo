@@ -2,9 +2,9 @@ from PyQt5.QtWidgets import QWidget, QMessageBox, QDialog
 from PyQt5.QtCore import qDebug, QRect, pyqtSignal, Qt
 from PyQt5.QtGui import QPixmap
 from src.views.ui.ui_CameraView import Ui_CameraView
-from src.model.CaptureThread import CaptureThread
-from src.controllers.ImageProcessingSettingsDialog import ImageProcessingSettingsDialog
-from src.model.ProcessingThread import ProcessingThread
+from src.model.CaptureThreadModel import CaptureThreadModel
+from src.controllers.ImageProcessingSettingsDialogController import ImageProcessingSettingsDialogController
+from src.model.ProcessingThreadModel import ProcessingThreadModel
 from src.utils.Structures import *
 
 
@@ -12,12 +12,12 @@ class CameraView(QWidget, Ui_CameraView):
     newImageProcessingFlags = pyqtSignal(ImageProcessingFlags)
     setROI = pyqtSignal(QRect)
 
-    def __init__(self, parent, deviceUrl, sharedImageBuffer, cameraId):
+    def __init__(self, parent, deviceUrl, sharedImageBufferModel, cameraId):
         super(CameraView, self).__init__(parent)
-        self.sharedImageBuffer = sharedImageBuffer
+        self.sharedImageBufferModel = sharedImageBufferModel
         self.cameraId = cameraId
         # Create image processing settings dialog
-        self.imageProcessingSettingsDialog = ImageProcessingSettingsDialog(
+        self.imageProcessingSettingsDialogViewController = ImageProcessingSettingsDialogViewController(
             self)
         # Setup UI
         self.setupUi(self)

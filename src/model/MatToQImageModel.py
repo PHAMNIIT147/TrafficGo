@@ -3,7 +3,7 @@ from PyQt5.QtGui import QImage
 import numpy as np
 
 
-def matToQImage(data):
+def matToQImageModel(data):
     # 8-bits unsigned, NO. OF CHANNELS=1
     if data.dtype == np.uint8:
         channels = 1 if len(data.shape) == 2 else data.shape[2]

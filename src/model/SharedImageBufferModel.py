@@ -1,6 +1,6 @@
 from PyQt5.QtCore import QMutexLocker, QMutex, QWaitCondition, qDebug
 
-class SharedImageBuffer(object):
+class SharedImageBufferModel(object):
     def __init__(self):
         # Initialize variables(s)
         self.nArrived = 0

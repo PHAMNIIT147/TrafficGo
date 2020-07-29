@@ -7,7 +7,7 @@
 # WARNING! All changes made in this file will be lost!
 
 
-from src.controllers.FrameLabel import FrameLabel
+from src.controllers.FrameLabelController import FrameLabelController
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 
@@ -24,21 +24,21 @@ class Ui_CameraView(object):
         CameraView.setSizePolicy(sizePolicy)
         self.verticalLayout = QtWidgets.QVBoxLayout(CameraView)
         self.verticalLayout.setObjectName("verticalLayout")
-        self.frameLabel = FrameLabel(CameraView)
-        self.frameLabel.setEnabled(True)
+        self.frameLabelController = FrameLabelController(CameraView)
+        self.frameLabelController.setEnabled(True)
         sizePolicy = QtWidgets.QSizePolicy(
             QtWidgets.QSizePolicy.Ignored, QtWidgets.QSizePolicy.Ignored)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(
-            self.frameLabel.sizePolicy().hasHeightForWidth())
-        self.frameLabel.setSizePolicy(sizePolicy)
-        self.frameLabel.setMouseTracking(True)
-        self.frameLabel.setAutoFillBackground(True)
-        self.frameLabel.setFrameShape(QtWidgets.QFrame.Box)
-        self.frameLabel.setAlignment(QtCore.Qt.AlignCenter)
-        self.frameLabel.setObjectName("frameLabel")
-        self.verticalLayout.addWidget(self.frameLabel)
+            self.frameLabelController.sizePolicy().hasHeightForWidth())
+        self.frameLabelController.setSizePolicy(sizePolicy)
+        self.frameLabelController.setMouseTracking(True)
+        self.frameLabelController.setAutoFillBackground(True)
+        self.frameLabelController.setFrameShape(QtWidgets.QFrame.Box)
+        self.frameLabelController.setAlignment(QtCore.Qt.AlignCenter)
+        self.frameLabelController.setObjectName("frameLabelController")
+        self.verticalLayout.addWidget(self.frameLabelController)
         self.line = QtWidgets.QFrame(CameraView)
         self.line.setFrameShape(QtWidgets.QFrame.HLine)
         self.line.setFrameShadow(QtWidgets.QFrame.Sunken)

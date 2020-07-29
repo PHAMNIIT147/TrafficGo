@@ -2,7 +2,7 @@
   <img src="assets/logo/logo.png" width="200">
 </p>
 <h1 align="center">VAA Ai Go!</h1>
-<h3 align="center">Vehicle speed estimation and error detection using Deep Learning - Internet Of Things</h3>
+<h3 align="center">Application vehicle speed estimation and error detection using Deep Learning - Internet Of Things</h3>
 
 <p align="center">
   <a href="https://opensource.org/licenses/MIT">
