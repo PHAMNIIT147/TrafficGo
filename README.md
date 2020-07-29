@@ -25,9 +25,11 @@ This project has been built using the [PyQt5](https://www.qt.io/design?utm_campa
 ## Download & install
 
 ## Built with
-- [Flutter](https://flutter.dev/) - Beautiful native apps in record time.
-- [Android Studio](https://developer.android.com/studio/index.html/) - Tools for building apps on every type of Android device.
+- [PyQt5](https://flutter.dev/) - Beautiful native apps in record time.
+- [OpenCV](https://developer.android.com/studio/index.html/) - Tools for building apps on every type of Android device.
 - [Visual Studio Code](https://code.visualstudio.com/) - Code editing. Redefined.
+- [Yolov3](https://code.visualstudio.com/) - Code editing. Redefined.
+- [Tensorflow](https://code.visualstudio.com/) - Code editing. Redefined
 
 ## Authors
 - ** Phong .Pham Thanh ** - Software Engineer:[Github]{},[Twitter]{},[Linkdln]{},[Viber]{}
