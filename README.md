@@ -33,8 +33,7 @@ This project has been built using the [PyQt5](https://www.qt.io/design?utm_campa
 
 ## Authors
 - ** Phong .Pham Thanh ** - Software Engineer:[Github]{},[Twitter]{},[Linkdln]{},[Viber]{}
-- ** Phuoc .Ha Quang ** - Ai Engineer: [Facebook]{}.[Viber]{}
-- ** Tuan .Nguyen Van Anh ** - Inter Supporter: [Github]{}, [Facebook]{}
+- ** ** 
 
 ## Contributing
 
