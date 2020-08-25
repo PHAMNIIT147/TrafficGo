@@ -1,0 +1,2 @@
+A plugin is a software add-on that is installed on a program, enhancing its capabilities. 
+For example, if you wanted to watch a video on a website, you may need a plugin to do so. If the plugin is not installed, your browser will not understand how to play the video.

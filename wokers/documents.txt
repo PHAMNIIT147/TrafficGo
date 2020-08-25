@@ -1,0 +1,4 @@
+Worker that checks for releases using either the Anaconda
+    default channels or the Github Releases page without
+    blocking the Spyder user interface, in case of connection
+    issues.

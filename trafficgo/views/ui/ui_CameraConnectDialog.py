@@ -2,9 +2,10 @@
 
 # Form implementation generated from reading ui file 'CameraConnectDialog.ui'
 #
-# Created by: PyQt5 UI code generator 5.11.3
+# Created by: PyQt5 UI code generator 5.14.1
 #
 # WARNING! All changes made in this file will be lost!
+
 
 from PyQt5 import QtCore, QtGui, QtWidgets
 
@@ -12,11 +13,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_CameraConnectDialog(object):
     def setupUi(self, CameraConnectDialog):
         CameraConnectDialog.setObjectName("CameraConnectDialog")
-        CameraConnectDialog.resize(742, 490)
+        CameraConnectDialog.resize(742, 520)
         CameraConnectDialog.setMinimumSize(QtCore.QSize(742, 490))
-        CameraConnectDialog.setMaximumSize(QtCore.QSize(742, 490))
+        CameraConnectDialog.setMaximumSize(QtCore.QSize(742, 600))
         self.layoutWidget = QtWidgets.QWidget(CameraConnectDialog)
-        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 721, 471))
+        self.layoutWidget.setGeometry(QtCore.QRect(10, 10, 721, 507))
         self.layoutWidget.setObjectName("layoutWidget")
         self.verticalLayout_4 = QtWidgets.QVBoxLayout(self.layoutWidget)
         self.verticalLayout_4.setContentsMargins(0, 0, 0, 0)
@@ -29,6 +30,7 @@ class Ui_CameraConnectDialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_1.setFont(font)
+        self.label_1.setAlignment(QtCore.Qt.AlignCenter)
         self.label_1.setObjectName("label_1")
         self.verticalLayout_3.addWidget(self.label_1)
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
@@ -76,68 +78,6 @@ class Ui_CameraConnectDialog(object):
         self.horizontalLayout_9.setStretch(0, 1)
         self.horizontalLayout_9.setStretch(1, 1)
         self.verticalLayout_3.addLayout(self.horizontalLayout_9)
-        self.gridLayout = QtWidgets.QGridLayout()
-        self.gridLayout.setHorizontalSpacing(0)
-        self.gridLayout.setObjectName("gridLayout")
-        self.label_19 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_19.setObjectName("label_19")
-        self.gridLayout.addWidget(self.label_19, 2, 2, 1, 1)
-        self.label_21 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_21.setObjectName("label_21")
-        self.gridLayout.addWidget(self.label_21, 2, 8, 1, 1)
-        self.label_15 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_15.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_15.setObjectName("label_15")
-        self.gridLayout.addWidget(self.label_15, 0, 3, 1, 1)
-        self.label_23 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_23.setObjectName("label_23")
-        self.gridLayout.addWidget(self.label_23, 2, 0, 1, 1)
-        self.label_18 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_18.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_18.setObjectName("label_18")
-        self.gridLayout.addWidget(self.label_18, 0, 7, 1, 1)
-        self.passwordEdit = QtWidgets.QLineEdit(self.layoutWidget)
-        self.passwordEdit.setMinimumSize(QtCore.QSize(90, 0))
-        self.passwordEdit.setObjectName("passwordEdit")
-        self.gridLayout.addWidget(self.passwordEdit, 2, 3, 1, 1)
-        self.label_17 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_17.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_17.setObjectName("label_17")
-        self.gridLayout.addWidget(self.label_17, 0, 9, 1, 1)
-        self.label_20 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_20.setObjectName("label_20")
-        self.gridLayout.addWidget(self.label_20, 2, 4, 1, 1)
-        self.usernameEdit = QtWidgets.QLineEdit(self.layoutWidget)
-        self.usernameEdit.setObjectName("usernameEdit")
-        self.gridLayout.addWidget(self.usernameEdit, 2, 1, 1, 1)
-        self.channelsEdit = QtWidgets.QLineEdit(self.layoutWidget)
-        self.channelsEdit.setMaximumSize(QtCore.QSize(70, 16777215))
-        self.channelsEdit.setObjectName("channelsEdit")
-        self.gridLayout.addWidget(self.channelsEdit, 2, 9, 1, 1)
-        self.label_14 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_14.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_14.setObjectName("label_14")
-        self.gridLayout.addWidget(self.label_14, 0, 1, 1, 1)
-        self.label_16 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_16.setAlignment(QtCore.Qt.AlignCenter)
-        self.label_16.setObjectName("label_16")
-        self.gridLayout.addWidget(self.label_16, 0, 5, 1, 1)
-        self.label_24 = QtWidgets.QLabel(self.layoutWidget)
-        self.label_24.setObjectName("label_24")
-        self.gridLayout.addWidget(self.label_24, 2, 6, 1, 1)
-        self.ipEdit = QtWidgets.QLineEdit(self.layoutWidget)
-        self.ipEdit.setMinimumSize(QtCore.QSize(136, 0))
-        self.ipEdit.setObjectName("ipEdit")
-        self.gridLayout.addWidget(self.ipEdit, 2, 5, 1, 1)
-        self.portEdit = QtWidgets.QLineEdit(self.layoutWidget)
-        self.portEdit.setMinimumSize(QtCore.QSize(50, 0))
-        self.portEdit.setMaximumSize(QtCore.QSize(60, 16777215))
-        self.portEdit.setObjectName("portEdit")
-        self.gridLayout.addWidget(self.portEdit, 2, 7, 1, 1)
-        self.rtspRadioButton = QtWidgets.QRadioButton(self.layoutWidget)
-        self.rtspRadioButton.setObjectName("rtspRadioButton")
-        self.gridLayout.addWidget(self.rtspRadioButton, 0, 0, 1, 1)
-        self.verticalLayout_3.addLayout(self.gridLayout)
         self.horizontalLayout_8 = QtWidgets.QHBoxLayout()
         self.horizontalLayout_8.setObjectName("horizontalLayout_8")
         self.horizontalLayout_13 = QtWidgets.QHBoxLayout()
@@ -196,6 +136,7 @@ class Ui_CameraConnectDialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_3.setFont(font)
+        self.label_3.setAlignment(QtCore.Qt.AlignCenter)
         self.label_3.setObjectName("label_3")
         self.verticalLayout_3.addWidget(self.label_3)
         self.horizontalLayout = QtWidgets.QHBoxLayout()
@@ -242,6 +183,7 @@ class Ui_CameraConnectDialog(object):
         font.setBold(True)
         font.setWeight(75)
         self.label_5.setFont(font)
+        self.label_5.setAlignment(QtCore.Qt.AlignCenter)
         self.label_5.setObjectName("label_5")
         self.verticalLayout_3.addWidget(self.label_5)
         self.horizontalLayout_3 = QtWidgets.QHBoxLayout()
@@ -318,6 +260,8 @@ class Ui_CameraConnectDialog(object):
         self.line.setObjectName("line")
         self.verticalLayout_4.addWidget(self.line)
         self.horizontalLayout_4 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_4.setSizeConstraint(
+            QtWidgets.QLayout.SetDefaultConstraint)
         self.horizontalLayout_4.setObjectName("horizontalLayout_4")
         self.resetToDefaultsPushButton = QtWidgets.QPushButton(
             self.layoutWidget)
@@ -333,21 +277,13 @@ class Ui_CameraConnectDialog(object):
         self.verticalLayout_4.addLayout(self.horizontalLayout_4)
 
         self.retranslateUi(CameraConnectDialog)
-        self.okCancelBox.accepted.connect(CameraConnectDialog.accept)
         self.okCancelBox.rejected.connect(CameraConnectDialog.reject)
+        self.okCancelBox.accepted.connect(CameraConnectDialog.accept)
         QtCore.QMetaObject.connectSlotsByName(CameraConnectDialog)
         CameraConnectDialog.setTabOrder(
             self.deviceUrlRadioButton, self.deviceUrlEdit)
         CameraConnectDialog.setTabOrder(self.deviceUrlEdit, self.filenameEdit)
-        CameraConnectDialog.setTabOrder(
-            self.filenameEdit, self.rtspRadioButton)
-        CameraConnectDialog.setTabOrder(
-            self.rtspRadioButton, self.usernameEdit)
-        CameraConnectDialog.setTabOrder(self.usernameEdit, self.passwordEdit)
-        CameraConnectDialog.setTabOrder(self.passwordEdit, self.ipEdit)
-        CameraConnectDialog.setTabOrder(self.ipEdit, self.portEdit)
-        CameraConnectDialog.setTabOrder(self.portEdit, self.channelsEdit)
-        CameraConnectDialog.setTabOrder(self.channelsEdit, self.resWEdit)
+        CameraConnectDialog.setTabOrder(self.filenameEdit, self.resWEdit)
         CameraConnectDialog.setTabOrder(self.resWEdit, self.resHEdit)
         CameraConnectDialog.setTabOrder(
             self.resHEdit, self.apiPreferenceComboBox)
@@ -370,7 +306,7 @@ class Ui_CameraConnectDialog(object):
         _translate = QtCore.QCoreApplication.translate
         CameraConnectDialog.setWindowTitle(_translate(
             "CameraConnectDialog", "Connect to Camera"))
-        self.label_1.setText(_translate("CameraConnectDialog", "Camera:"))
+        self.label_1.setText(_translate("CameraConnectDialog", "Camera"))
         self.deviceUrlRadioButton.setText(
             _translate("CameraConnectDialog", "Device url:"))
         self.label_10.setText(_translate(
@@ -379,33 +315,19 @@ class Ui_CameraConnectDialog(object):
             _translate("CameraConnectDialog", "From file:"))
         self.importFilePushButton.setText(
             _translate("CameraConnectDialog", "Import"))
-        self.label_19.setText(_translate("CameraConnectDialog", ":"))
-        self.label_21.setText(_translate(
-            "CameraConnectDialog", "/Streaming/Channels/"))
-        self.label_15.setText(_translate("CameraConnectDialog", "password"))
-        self.label_23.setText(_translate("CameraConnectDialog", "rtsp://"))
-        self.label_18.setText(_translate("CameraConnectDialog", "port"))
-        self.label_17.setText(_translate("CameraConnectDialog", "Channels"))
-        self.label_20.setText(_translate("CameraConnectDialog", "@"))
-        self.label_14.setText(_translate("CameraConnectDialog", "username"))
-        self.label_16.setText(_translate("CameraConnectDialog", "ip address"))
-        self.label_24.setText(_translate("CameraConnectDialog", ":"))
-        self.rtspRadioButton.setText(
-            _translate("CameraConnectDialog", "RTSP:"))
         self.label_11.setText(_translate(
             "CameraConnectDialog", "Resolution (W x H):"))
         self.label_12.setText(_translate("CameraConnectDialog", "[optional]"))
         self.label_13.setText(_translate("CameraConnectDialog", "x"))
         self.label.setText(_translate("CameraConnectDialog", "apiPreference:"))
-        self.label_3.setText(_translate(
-            "CameraConnectDialog", "Image Buffer:"))
+        self.label_3.setText(_translate("CameraConnectDialog", "Image Buffer"))
         self.label_2.setText(_translate(
             "CameraConnectDialog", "Size (number of images/frames):"))
         self.label_4.setText(_translate("CameraConnectDialog", "[1-999]"))
         self.dropFrameCheckBox.setText(_translate(
             "CameraConnectDialog", "Drop frame if image buffer is full"))
         self.label_5.setText(_translate(
-            "CameraConnectDialog", "Thread Priorities:"))
+            "CameraConnectDialog", "Thread Priorities"))
         self.label_6.setText(_translate(
             "CameraConnectDialog", "Capture Thread:"))
         self.label_7.setText(_translate(

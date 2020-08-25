@@ -1,0 +1,3 @@
+#!/usr/bin/env python
+from traffic.app import start
+start.main()
