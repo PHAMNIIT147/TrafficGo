@@ -127,3 +127,14 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+*.html
+*.bak
+*.swp
+__pycache__
+*.egg-info
+*.pyc
+
+# IDE's
+.idea
+.vscode
